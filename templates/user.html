@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}{{ username }}'s Living Dex{% endblock %}
+{% block content %}
+<ul>
+{% for pokemon in dex %}
+<li
+id={{ loop.index }}
+{% if pokemon == 0 %}
+class='uncaught'
+{% else %}
+class='caught'
+{% endif %}
+>
+{{ loop.index }}
+</li>
+{% endfor %}
+</ul>
+{% endblock %}
+{% block footer %}
+<script type="text/javascript">var user = "{{ username }}";</script>
+{% if loggedIn %}
+<script src="{{ url_for('static', filename='editdex.js' ) }}"></script>
+{% endif %}
+{% endblock %}
