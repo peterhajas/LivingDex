@@ -75,7 +75,6 @@ def togglePokemonForCurrentUser(pokemon):
         currentPokemon.remove(pokemon)
     else:
         currentPokemon.append(pokemon)
-    print currentPokemon
 
 def userHasPassword(username, password):
     if username in currentUsers.keys():

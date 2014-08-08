@@ -18,7 +18,7 @@ class='caught'
 {% endblock %}
 {% block footer %}
 <script type="text/javascript">var user = "{{ username }}";</script>
-{% if loggedIn %}
+{% if session.username == username%}
 <script src="{{ url_for('static', filename='editdex.js' ) }}"></script>
 {% endif %}
 {% endblock %}

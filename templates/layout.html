@@ -9,6 +9,15 @@
     {% endblock %}
   </head>
   <body>
+    <div id="header">
+        {% set currentUser = session.username %}
+        {% if currentUser%}
+        <a href="{{ url_for('user', username=currentUser) }}"> {{ currentUser }}</a>
+        <a href="{{ url_for('logoutAndGoHome') }}">logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">login / register</a>
+        {% endif %}
+    </div>
     <div id="content">
         {% block content %}
         {% endblock %}

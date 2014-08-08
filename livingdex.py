@@ -16,14 +16,14 @@ def home():
 
 @app.route('/user/<username>')
 def user(username):
-    return render_template('user.html', username=username, dex=dexForUsername(username), loggedIn=userIsLoggedIn(username))
+    return render_template('user.html', username=username, dex=dexForUsername(username))
 
 @app.route('/togglePokemon', methods=['POST'])
 def togglePokemon():
     username = request.form['username']
-    toggledPokemon = request.form['toggledPokemon']
-    print toggledPokemon
     if username == currentUser():
+        toggledPokemon = request.form['toggledPokemon']
+        print toggledPokemon
         togglePokemonForCurrentUser(int(toggledPokemon))
     return 'OK'
 
@@ -40,6 +40,11 @@ def login():
         else:
             error = 'Bad username / password'
     return render_template('login.html')
+
+@app.route('/logout')
+def logoutAndGoHome():
+    logout()
+    return home()
 
 if __name__ == '__main__':
     app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
