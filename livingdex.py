@@ -8,7 +8,7 @@ from users import *
 
 app = Flask(__name__)
 
-init()
+loadDatabase('test.csv')
 
 @app.route('/')
 def home():
@@ -27,18 +27,39 @@ def togglePokemon():
         togglePokemonForCurrentUser(int(toggledPokemon))
     return 'OK'
 
+@app.route('/register', methods=['POST'])
+def register():
+    error = ''
+    registerUsername = request.form['registerUsername']
+    registerPassword = request.form['registerPassword']
+
+    print registerUsername
+    print registerPassword
+
+    if len(registerUsername) > 0:
+        registerUser(registerUsername, registerPassword, 0)
+        logInUser(registerUsername)
+        return redirect(url_for('user', username=registerUsername))
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    error = 'no error'
+    error = ''
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        loginUsername = request.form['loginUsername']
+        loginPassword = request.form['loginPassword']
 
-        if userHasPassword(username, password):
-            logInUser(username)
-            return redirect(url_for('user', username=username))
+        print loginUsername
+        print loginPassword
+
+        if len(loginUsername) > 0:
+            if userHasPassword(username, password):
+                logInUser(username)
+                return redirect(url_for('user', username=username))
+            else:
+                error = 'Bad username / password'
         else:
-            error = 'Bad username / password'
+            error = 'You need to enter in a username and password to register or log in as.'
+
     return render_template('login.html')
 
 @app.route('/logout')

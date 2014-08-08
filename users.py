@@ -1,4 +1,5 @@
 from flask import session
+import csv
 
 currentUsers = {}
 
@@ -6,27 +7,35 @@ class User:
     def __init__(self):
         self.username = ''
         self.password = ''
+        self.friendCode = ''
         self.pokemon  = []
 
-''' Test data '''
-def init():
-    peter = User()
-    peter.username = 'phajas'
-    peter.password = 'test'
-    peter.pokemon  = [1,2,3]
-    addUser(peter)
+''' Database Reading and Writing '''
 
-    eric = User()
-    eric.username = 'eric'
-    eric.password = 'lol'
-    eric.pokemon = [4,5,6]
-    addUser(eric)
+def loadDatabase(path):
+    with open(path, 'rb') as databaseFile:
+        reader = csv.reader(databaseFile, delimiter=' ', quotechar='|')
+        for row in reader:
+            userForRow = User()
+            userForRow.username = row[0]
+            userForRow.password = row[1]
+            userForRow.friendCode = row[2]
 
-    alex = User()
-    alex.username = 'alex'
-    alex.password = 'password'
-    alex.pokemon = [1,2,7,8,9]
-    addUser(alex)
+            for pokemon in range(3, len(row)):
+                userForRow.pokemon.append(int(pokemon))
+
+            currentUsers[userForRow.username] = userForRow
+
+def writeDatabase(path):
+    with open(path, 'wb') as databaseFile:
+        writer = csv.writer(databaseFile, delimiter=' ', quotechar='|')
+        
+        for username in currentUsers.keys():
+            userForRow = currentUsers[username]
+
+            row = [username, userForRow.password, userForRow.friendCode]
+            row = row + userForRow.pokemon
+            writer.writerow(row)
 
 ''' User Login '''
 
@@ -44,11 +53,13 @@ def userIsLoggedIn(username):
 
 ''' User Modification '''
 
-def addUser(user):
-    if userForUsername(user.username) is not None:
-        pass
-    else:
-        currentUsers[user.username] = user
+def registerUser(username, password, friendCode):
+    newuser = User()
+    newuser.username = username
+    newuser.password = password
+    newuser.friendCode = friendCode
+
+    currentUsers[username] = newuser
 
 ''' User Access and Query '''
 
@@ -75,6 +86,7 @@ def togglePokemonForCurrentUser(pokemon):
         currentPokemon.remove(pokemon)
     else:
         currentPokemon.append(pokemon)
+    writeDatabase('test.csv')
 
 def userHasPassword(username, password):
     if username in currentUsers.keys():

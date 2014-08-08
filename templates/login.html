@@ -1,9 +1,16 @@
 {% extends "layout.html" %}
 {% block title %}Login{% endblock %}
 {% block content %}
-<form name="input" action="login" method="post">
-    username: <input type="text" name="username">
-    password: <input type="text" name="password">
+Login:
+<form name="login" action="login" method="post">
+    username: <input type="text" name="loginUsername">
+    password: <input type="text" name="loginPassword">
+    <input type="submit" value="post it">
+</form>
+Register:
+<form name="register" action="register" method="post">
+    username: <input type="text" name="registerUsername">
+    password: <input type="text" name="registerPassword">
     <input type="submit" value="post it">
 </form>
 {% endblock %}
