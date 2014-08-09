@@ -12,7 +12,7 @@ loadDatabase('test.csv')
 
 @app.route('/')
 def home():
-    return 'Welcome to LivingDex'
+    return render_template('home.html')
 
 @app.route('/user/<username>')
 def user(username):
@@ -28,32 +28,42 @@ def togglePokemon():
 
 @app.route('/register', methods=['POST'])
 def register():
-    error = ''
+    error = None
     registerUsername = request.form['registerUsername']
     registerPassword = request.form['registerPassword']
 
-    if len(registerUsername) > 0:
+    if userExists(registerUsername):
+        error = 'User {} already exists'.format(registerUsername)
+    elif len(registerUsername) == 0:
+        error = 'Username empty'
+
+    if error is not None:
+        return render_template('login.html', error=error)
+    else:
         registerUser(registerUsername, registerPassword, 0)
         logInUser(registerUsername)
         return redirect(url_for('user', username=registerUsername))
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    error = ''
+    error = None
     if request.method == 'POST':
         loginUsername = request.form['loginUsername']
         loginPassword = request.form['loginPassword']
 
         if len(loginUsername) > 0:
-            if userHasPassword(username, password):
-                logInUser(username)
-                return redirect(url_for('user', username=username))
+            print userExists(loginUsername)
+            if not userExists(loginUsername):
+                error = 'User {} does not exist'.format(loginUsername)
+            elif userHasPassword(loginUsername, loginPassword):
+                logInUser(loginUsername)
+                return redirect(url_for('user', username=loginUsername))
             else:
-                error = 'Bad username / password'
+                error = 'Incorrect username / password'
         else:
             error = 'You need to enter in a username and password to register or log in as.'
 
-    return render_template('login.html')
+    return render_template('login.html', error=error)
 
 @app.route('/logout')
 def logoutAndGoHome():

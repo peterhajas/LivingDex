@@ -1,6 +1,9 @@
 {% extends "layout.html" %}
 {% block title %}Login{% endblock %}
 {% block content %}
+{% if error %}
+<h3 class="error">{{ error }}</h3>
+{% endif %}
 Login:
 <form name="login" action="login" method="post">
     username: <input type="text" name="loginUsername">

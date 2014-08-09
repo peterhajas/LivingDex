@@ -69,6 +69,9 @@ def userForUsername(username):
     else:
         return currentUsers[username]
 
+def userExists(username):
+    return userForUsername(username) is not None
+
 def pokemonCaughtForUsername(username):
     return userForUsername(username).pokemon
 
