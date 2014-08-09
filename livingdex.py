@@ -6,10 +6,12 @@ from flask import redirect
 
 from users import *
 from usersession import *
+from pokedex import *
 
 app = Flask(__name__)
 
 database = UserDatabase('test.csv')
+nationalDex = NationalDex('nationaldex.txt')
 
 @app.route('/')
 def home():
@@ -17,8 +19,10 @@ def home():
 
 @app.route('/user/<username>')
 def user(username):
+    print database.userExists(username)
+    print database.users
     if database.userExists(username):
-        return render_template('user.html', username=username, dex=database.dexForUsername(username))
+        return render_template('user.html', username=username, dex=database.dexForUsername(username, nationalDex.numberOfPokemon))
     else:
         return render_template('baduser.html', username=username)
 
