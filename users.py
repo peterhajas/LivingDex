@@ -1,4 +1,3 @@
-from flask import session
 import csv
 
 class User:
@@ -86,19 +85,4 @@ class UserDatabase:
             return password == self.users[username].password
         else:
             return False
-
-
-''' User Login '''
-
-def logInUser(username):
-    session['username'] = username
-
-def logout():
-    session['username'] = None
-
-def currentUser():
-    return session['username']
-
-def userIsLoggedIn(username):
-    return currentUser() == username
 
