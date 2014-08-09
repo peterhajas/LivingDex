@@ -22,7 +22,7 @@ def user(username):
     print database.userExists(username)
     print database.users
     if database.userExists(username):
-        return render_template('user.html', username=username, dex=database.dexForUsername(username, nationalDex.numberOfPokemon))
+        return render_template('user.html', username=username, dex=database.dexForUsername(username, nationalDex.numberOfPokemon), pokemonNames=nationalDex.pokemonNames)
     else:
         return render_template('baduser.html', username=username)
 

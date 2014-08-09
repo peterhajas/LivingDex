@@ -11,7 +11,7 @@ class='uncaught'
 class='caught'
 {% endif %}
 >
-{{ loop.index }}
+{{ loop.index }} - {{ pokemonNames[loop.index - 1] }}
 </li>
 {% endfor %}
 </ul>
