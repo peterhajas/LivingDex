@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block title %}LivingDex | No user by that name{% endblock %}
+{% block content %}
+Sorry! LivingDex doesn't know of {{ username }}.
+{% if not session.username %}
+
+Maybe you'd like to <a href="{{ url_for('login') }}">register</a> for that name?
+{% endif %}
+{% endblock %}
