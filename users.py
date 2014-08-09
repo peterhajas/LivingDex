@@ -49,6 +49,7 @@ class UserDatabase:
         newuser.friendCode = friendCode
 
         self.users[username] = newuser
+        self.writeDatabase()
 
     ''' User Access and Query '''
 
@@ -64,9 +65,9 @@ class UserDatabase:
     def pokemonCaughtForUsername(self, username):
         return self.userForUsername(username).pokemon
 
-    def dexForUsername(self, username):
+    def dexForUsername(self, username, pokemonCount):
         pokemonCaught = self.pokemonCaughtForUsername(username)
-        dex = [0] * 10
+        dex = [0] * pokemonCount
         for pokemon in pokemonCaught:
             #-1 because our list of Pokemon is 1-indexed
             dex[pokemon-1] = 1
