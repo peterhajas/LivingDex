@@ -8,7 +8,7 @@ from users import *
 
 app = Flask(__name__)
 
-loadDatabase('test.csv')
+database = UserDatabase('test.csv')
 
 @app.route('/')
 def home():
@@ -16,14 +16,14 @@ def home():
 
 @app.route('/user/<username>')
 def user(username):
-    return render_template('user.html', username=username, dex=dexForUsername(username))
+    return render_template('user.html', username=username, dex=database.dexForUsername(username))
 
 @app.route('/togglePokemon', methods=['POST'])
 def togglePokemon():
     username = request.form['username']
     if username == currentUser():
         toggledPokemon = request.form['toggledPokemon']
-        togglePokemonForCurrentUser(int(toggledPokemon))
+        database.togglePokemonForUser(username, int(toggledPokemon))
     return 'OK'
 
 @app.route('/register', methods=['POST'])
@@ -32,7 +32,7 @@ def register():
     registerUsername = request.form['registerUsername']
     registerPassword = request.form['registerPassword']
 
-    if userExists(registerUsername):
+    if database.userExists(registerUsername):
         error = 'User {} already exists'.format(registerUsername)
     elif len(registerUsername) == 0:
         error = 'Username empty'
@@ -40,7 +40,7 @@ def register():
     if error is not None:
         return render_template('login.html', error=error)
     else:
-        registerUser(registerUsername, registerPassword, 0)
+        database.registerUser(registerUsername, registerPassword, 0)
         logInUser(registerUsername)
         return redirect(url_for('user', username=registerUsername))
 
@@ -52,10 +52,9 @@ def login():
         loginPassword = request.form['loginPassword']
 
         if len(loginUsername) > 0:
-            print userExists(loginUsername)
-            if not userExists(loginUsername):
+            if not database.userExists(loginUsername):
                 error = 'User {} does not exist'.format(loginUsername)
-            elif userHasPassword(loginUsername, loginPassword):
+            elif database.userHasPassword(loginUsername, loginPassword):
                 logInUser(loginUsername)
                 return redirect(url_for('user', username=loginUsername))
             else:
