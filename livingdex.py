@@ -23,7 +23,6 @@ def togglePokemon():
     username = request.form['username']
     if username == currentUser():
         toggledPokemon = request.form['toggledPokemon']
-        print toggledPokemon
         togglePokemonForCurrentUser(int(toggledPokemon))
     return 'OK'
 
@@ -32,9 +31,6 @@ def register():
     error = ''
     registerUsername = request.form['registerUsername']
     registerPassword = request.form['registerPassword']
-
-    print registerUsername
-    print registerPassword
 
     if len(registerUsername) > 0:
         registerUser(registerUsername, registerPassword, 0)
@@ -47,9 +43,6 @@ def login():
     if request.method == 'POST':
         loginUsername = request.form['loginUsername']
         loginPassword = request.form['loginPassword']
-
-        print loginUsername
-        print loginPassword
 
         if len(loginUsername) > 0:
             if userHasPassword(username, password):
