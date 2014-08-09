@@ -10,6 +10,8 @@
   </head>
   <body>
     <div id="header">
+        <a href="{{ url_for('home') }}">home</a>
+
         {% set currentUser = session.username %}
         {% if currentUser%}
         <a href="{{ url_for('user', username=currentUser) }}"> {{ currentUser }}</a>
