@@ -38,6 +38,8 @@ a
     bottom:0;
 }
 
+/* User-specific CSS */
+
 .caught
 {
     background-color: rgba(0, 255, 0, 0.35);
@@ -84,4 +86,19 @@ ul
     list-style-type: none;
     margin-left:auto;
     margin-right:auto;
+}
+
+/* Login-specific CSS */
+
+form
+{
+    width:300px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+input.textBox
+{
+    display:block;
+    width:100%;
 }

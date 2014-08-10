@@ -4,16 +4,20 @@
 {% if error %}
 <h3 class="error">{{ error }}</h3>
 {% endif %}
-Login:
 <form name="login" action="login" method="post">
-    username: <input type="text" name="loginUsername">
-    password: <input type="text" name="loginPassword">
+<h3 class="loginLabel">Login:</h3>
+    <label for="loginUsername">username:</label>
+    <input class="textBox" type="text" name="loginUsername" id="loginUsername">
+    <label for="loginPassword">password:</label>
+    <input class="textBox" type="text" name="loginPassword" id="loginPassword">
     <input type="submit" value="post it">
 </form>
-Register:
 <form name="register" action="register" method="post">
-    username: <input type="text" name="registerUsername">
-    password: <input type="text" name="registerPassword">
+<h3 class="loginLabel">Register:</h3>
+    <label for="registerUsername">username:</label>
+    <input class="textBox" type="text" name="registerUsername" id="registerUsername">
+    <label for="registerPassword">password:</label>
+    <input class="textBox" type="text" name="registerPassword" id="registerPassword">
     <input type="submit" value="post it">
 </form>
 {% endblock %}
