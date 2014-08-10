@@ -11,9 +11,8 @@
 .pokemonCell
 {
     display:inline-block;
-    font:helvetica;
     width: 150px;
-    height: 100px;
+    height: 150px;
     margin: 0px;
     text-align: center;
 }
@@ -21,14 +20,25 @@
 .pokemonCellNumber
 {
     font-family:"Menlo", "Lucida Console", Monaco, monospace;
-    font-size:24;
+    font-size:24px;
 }
 
 .pokemonCellName
 {
+    font-family:"Helvetica", sans-serif;
+    font-size:24px;
+}
+
+.boxTitle
+{
+    text-align: center;
+    font-family:"Menlo", "Lucida Console", Monaco, monospace;
+    font-size:40px;
 }
 
 ul
 {
     list-style-type: none;
+    margin-left:auto;
+    margin-right:auto;
 }
