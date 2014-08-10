@@ -1,11 +1,11 @@
 .caught
 {
-    background-color: green;
+    background-color: rgba(0, 255, 0, 0.35);
 }
 
 .uncaught
 {
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.35);
 }
 
 .pokemonCell
