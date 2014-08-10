@@ -6,9 +6,11 @@
 {% for pokemon in dex %}
 
 {% if loop.index0 % 30 == 0 %}
-<h2>
-    Box {{loop.index}} - {{loop.index0 + 30}}
-</h2>
+<div class='boxTitle'>
+{% set boxStartIndex = loop.index %}
+{% set boxEndIndex = loop.index0 + 30 %}
+{{("%03d")|format(boxStartIndex)}} - {{("%03d")|format(boxEndIndex)}}
+</div>
 {% endif %}
 <li
 id={{ loop.index }}
@@ -18,8 +20,8 @@ class='pokemonCell uncaught'
 class='pokemonCell caught'
 {% endif %}
 >
-<div class=pokemonCellNumber>{{ loop.index }}</div>
-<div class=pokemonCellName>{{ pokemonNames[loop.index - 1] }}</div>
+<div class='pokemonCellNumber'>{{ ("%03d")|format(loop.index) }}</div>
+<div class='pokemonCellName'>{{ pokemonNames[loop.index - 1] }}</div>
 </li>
 
 {% if loop.index % 6 == 0 %}
