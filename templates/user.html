@@ -18,7 +18,8 @@ class='pokemonCell uncaught'
 class='pokemonCell caught'
 {% endif %}
 >
-{{ loop.index }} - {{ pokemonNames[loop.index - 1] }}
+<div class=pokemonCellNumber>{{ loop.index }}</div>
+<div class=pokemonCellName>{{ pokemonNames[loop.index - 1] }}</div>
 </li>
 
 {% if loop.index % 6 == 0 %}

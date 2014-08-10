@@ -14,6 +14,18 @@
     font:helvetica;
     width: 150px;
     height: 100px;
+    margin: 0px;
+    text-align: center;
+}
+
+.pokemonCellNumber
+{
+    font-family:"Menlo", "Lucida Console", Monaco, monospace;
+    font-size:24;
+}
+
+.pokemonCellName
+{
 }
 
 ul
