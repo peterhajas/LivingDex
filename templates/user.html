@@ -13,9 +13,9 @@
 <li
 id={{ loop.index }}
 {% if pokemon == 0 %}
-class='uncaught'
+class='pokemonCell uncaught'
 {% else %}
-class='caught'
+class='pokemonCell caught'
 {% endif %}
 >
 {{ loop.index }} - {{ pokemonNames[loop.index - 1] }}

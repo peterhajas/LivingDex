@@ -7,3 +7,16 @@
 {
     background-color: red;
 }
+
+.pokemonCell
+{
+    display:inline-block;
+    font:helvetica;
+    width: 150px;
+    height: 100px;
+}
+
+ul
+{
+    list-style-type: none;
+}
