@@ -27,8 +27,6 @@ class='pokemonCell caught'
 {% endfor %}
 </ul>
 
-{% endblock %}
-{% block footer %}
 <script type="text/javascript">var user = "{{ username }}";</script>
 {% if session.username == username%}
 <script src="{{ url_for('static', filename='editdex.js' ) }}"></script>
