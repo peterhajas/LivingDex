@@ -1,8 +1,15 @@
 {% extends "layout.html" %}
 {% block title %}{{ username }}'s Living Dex{% endblock %}
 {% block content %}
+
 <ul>
 {% for pokemon in dex %}
+
+{% if loop.index0 % 30 == 0 %}
+<h2>
+    Box {{loop.index}} - {{loop.index0 + 30}}
+</h2>
+{% endif %}
 <li
 id={{ loop.index }}
 {% if pokemon == 0 %}
@@ -13,8 +20,14 @@ class='caught'
 >
 {{ loop.index }} - {{ pokemonNames[loop.index - 1] }}
 </li>
+
+{% if loop.index % 6 == 0 %}
+<br>
+{% endif %}
+
 {% endfor %}
 </ul>
+
 {% endblock %}
 {% block footer %}
 <script type="text/javascript">var user = "{{ username }}";</script>
