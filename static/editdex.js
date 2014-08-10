@@ -2,24 +2,34 @@ $('ul').click
 (
     function (event)
     {
-        clickedElement = event.target;
-        toggledPokemon = clickedElement.id;
-        console.log(toggledPokemon);
-        console.log(event)
-        $.post('/togglePokemon', {username : user, toggledPokemon : toggledPokemon});
-        
-        pokemonState = clickedElement.className;
-        var newPokemonState = '';
-        if(pokemonState == 'uncaught')
-        {
-            newPokemonState = 'caught';
-        }
-        else if(pokemonState = 'caught')
-        {
-            newPokemonState = 'uncaught';
-        }
-        console.log(pokemonState);
+        var clickedElement = event.target;
 
-        clickedElement.className = newPokemonState;
+        if(!$(clickedElement).hasClass('pokemonCell'))
+        {
+            while(true)
+            {
+                if($(clickedElement).hasClass('pokemonCell'))
+                {
+                    break;
+                }
+                var parent = $(clickedElement).parent();
+                if(parent != null)
+                {
+                    clickedElement = parent;
+                }
+                else
+                {
+                    // No clicked pokemon here. Return.
+                    return;
+                }
+            }
+        }
+
+
+        toggledPokemon = clickedElement.id;
+        $.post('/togglePokemon', {username : user, toggledPokemon : toggledPokemon});
+
+        $(clickedElement).toggleClass('uncaught');
+        $(clickedElement).toggleClass('caught');
     }
 );
