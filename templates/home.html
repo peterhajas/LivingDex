@@ -1,5 +1,27 @@
 {% extends "layout.html" %}
 {% block title %}LivingDex{% endblock %}
 {% block content %}
-Welcome to LivingDex!
+<h1 class='welcomeHeading'>
+Welcome to LivingDex
+</h1>
+<h2>
+A website to help you manage your Living Pokedex
+</h2>
+
+<p>
+What's a Living Pokedex?
+</p>
+
+<p>
+In <a href="https://en.wikipedia.org/wiki/Pokemon">Pokémon</a>, a <a href="https://en.wikipedia.org/wiki/Pokedex">Pokédex</a> is a device given to a trainer early on in the game. It's used to keep track of how many Pokémon are seen, and how many the player has caught.
+</p>
+
+<p>
+For some players of Pokémon, simply seeing (or catching) all the Pokémon is not enough. Some players want to have one of every Pokémon. This is called a <a href="http://www.fullscreenpokemon.com">Living Pokédex</a>.
+</p>
+
+<p>
+Interested in starting your own Living Pokédex? LivingDex is here to help! <a href="{{ url_for('login') }}">Register an account</a> for free, and get on your way to Catching them All!
+</p>
+
 {% endblock %}

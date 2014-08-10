@@ -1,3 +1,43 @@
+.welcomeHeading
+{
+    text-align: center;
+    font-family: "HelveticaNeue", sans-serif;
+    font-weight: lighter;
+}
+
+h2
+{
+    text-align: center;
+    font-family: "HelveticaNeue", sans-serif;
+}
+
+p
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+}
+
+a
+{
+    color: red;
+}
+
+#header
+{
+    width:100%;
+    position:fixed;
+    top:0;
+}
+
+#footer
+{
+    text-align:center;
+    width:100%;
+    position:fixed;
+    bottom:0;
+}
+
 .caught
 {
     background-color: rgba(0, 255, 0, 0.35);
