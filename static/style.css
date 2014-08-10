@@ -34,6 +34,8 @@
     text-align: center;
     font-family:"Menlo", "Lucida Console", Monaco, monospace;
     font-size:40px;
+    margin-top:10px;
+    margin-bottom:10px;
 }
 
 ul
