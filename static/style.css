@@ -208,7 +208,9 @@ body
 .pokemonCellName
 {
     font-family:"Helvetica", sans-serif;
-    font-size:18pt;
+    font-weight:lighter;
+    font-size:10pt;
+    word-wrap:break-word;
 }
 
 .boxTitle
