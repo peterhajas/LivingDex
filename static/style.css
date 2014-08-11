@@ -11,13 +11,6 @@ h2
     font-family: "HelveticaNeue", sans-serif;
 }
 
-p
-{
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 600px;
-}
-
 a
 {
     text-decoration: none;
@@ -29,6 +22,12 @@ a
     font-family: "HelveticaNeue", sans-serif;
     font-size: 14pt;
     color: white;
+}
+
+#content
+{
+    margin-left: auto;
+    margin-right: auto;
 }
 
 body
@@ -221,10 +220,7 @@ body
 
 ul
 {
-    width:900px;
     list-style-type: none;
-    margin-left:auto;
-    margin-right:auto;
 }
 
 /* Login-specific CSS */
