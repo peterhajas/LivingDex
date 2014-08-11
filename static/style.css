@@ -162,16 +162,16 @@ body
 .pokemonCellName
 {
     font-family:"Helvetica", sans-serif;
-    font-size:24pt;
+    font-size:18pt;
 }
 
 .boxTitle
 {
     text-align: center;
     font-family:"Menlo", "Lucida Console", Monaco, monospace;
-    font-size:40pt;
-    margin-top:10px;
-    margin-bottom:10px;
+    font-size:36pt;
+    margin-top:12px;
+    margin-bottom:12px;
 }
 
 ul
