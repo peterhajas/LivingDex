@@ -23,11 +23,22 @@ a
     color: red;
 }
 
+#header a
+{
+    color: white;
+}
+
+body
+{
+    margin: 0;
+}
+
 #header
 {
     width:100%;
     position:fixed;
     top:0;
+    background-color: red;
 }
 
 #footer
