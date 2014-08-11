@@ -234,6 +234,13 @@ ul
     margin-right:auto;
 }
 
+.loginLabel
+{
+    font-family:"HelveticaNeue", sans-serif;
+    font-weight: lighter;
+    text-align:center;
+}
+
 input.textBox
 {
     font-size:24pt;
