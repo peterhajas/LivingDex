@@ -99,6 +99,9 @@ form
 
 input.textBox
 {
+    font-size:24pt;
+    font-family:"HelveticaNeue", sans-serif;
+    font-style: lighter;
     display:block;
     width:100%;
 }
