@@ -15,7 +15,7 @@ p
 {
     margin-left: auto;
     margin-right: auto;
-    width: 600px;
+    max-width: 600px;
 }
 
 a
@@ -186,7 +186,7 @@ ul
 
 .loginContainer
 {
-    width:300px;
+    max-width:300px;
     margin-left:auto;
     margin-right:auto;
 }
