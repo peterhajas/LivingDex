@@ -249,3 +249,9 @@ input.textBox
     display:block;
     width:100%;
 }
+
+.securityWarning
+{
+    color: red;
+    font-weight: bold;
+}
