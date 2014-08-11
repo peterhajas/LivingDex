@@ -45,7 +45,6 @@ body
     position:fixed;
     top:0;
     background-color: red;
-    text-align:right;
 }
 
 .headerNavigation
@@ -95,33 +94,79 @@ body
 
 .headerSwoopContainer
 {
-    display:none;
-    float:left;
-    /* position:absolute; */
-    /* height:100%; */
-    /* width:100%; */
-    width:500px;
-    height:500px;
+    top:0;
+    left:0;
+    bottom:0;
+    position:absolute;
+    width:100vw;
 }
 
 .headerSwoopLine
 {
+    margin-left: -4px;
     padding:0px;
-    display:inline-block;
     height:2px;
     background-color:black;
+    position:absolute;
 }
 
 #bottomLine
 {
-    width:100px;
-    vertical-align:bottom;
+    width:150px;
+    bottom:0;
 }
 
 #topLine
 {
-    width:500px;
-    vertical-align:top;
+    left:210px;
+    width:5000px;
+    top:0;
+}
+
+.headerSwoopCircle
+{
+    height:28px;
+    width:28px;
+    margin-left: -4px;
+    border-style:solid;
+    border-width:2px;
+    border-color:black;
+    background-color:red;
+    position:absolute;
+}
+
+#leftCircle
+{
+    bottom:0;
+    left:150px;
+    border-radius:0 0 56px 0;
+}
+
+#rightCircle
+{
+    top:0;
+    left:180px;
+    border-radius:56px 0 0 0;
+}
+
+.headerSwoopCircle.coverup
+{
+    width:32px;
+    height:32px;
+    border-width:0px;
+    background-color:red;
+}
+
+.headerSwoopCircle.coverup#leftCircle
+{
+    left:148px;
+    bottom:2px;
+}
+
+.headerSwoopCircle.coverup#rightCircle
+{
+    left:182px;
+    top:2px;
 }
 
 #footer
