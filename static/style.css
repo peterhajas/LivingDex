@@ -62,20 +62,20 @@ a
 .pokemonCellNumber
 {
     font-family:"Menlo", "Lucida Console", Monaco, monospace;
-    font-size:24px;
+    font-size:24pt;
 }
 
 .pokemonCellName
 {
     font-family:"Helvetica", sans-serif;
-    font-size:24px;
+    font-size:24pt;
 }
 
 .boxTitle
 {
     text-align: center;
     font-family:"Menlo", "Lucida Console", Monaco, monospace;
-    font-size:40px;
+    font-size:40pt;
     margin-top:10px;
     margin-bottom:10px;
 }
