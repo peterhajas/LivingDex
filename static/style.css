@@ -184,7 +184,7 @@ ul
 
 /* Login-specific CSS */
 
-form
+.loginContainer
 {
     width:300px;
     margin-left:auto;
