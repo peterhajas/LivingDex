@@ -45,6 +45,83 @@ body
     position:fixed;
     top:0;
     background-color: red;
+    text-align:right;
+}
+
+.headerNavigation
+{
+    margin-right:10px;
+    float:right;
+}
+
+.headerCircleContainer
+{
+    margin-left:10px;
+    float:left;
+}
+
+.headerCircle
+{
+    border:solid 3px black;
+    width:15px;
+    height:15px;
+    border-radius:50%;
+    display:inline-block;
+    vertical-align:top;
+}
+
+#redCircle
+{
+    background-color:red;
+}
+
+#yellowCircle
+{
+    background-color:yellow;
+}
+
+#greenCircle
+{
+    background-color:green;
+}
+
+.headerCircle#bigCircle
+{
+    border-color:#eee;
+    width:30px;
+    height:30px;
+    background-color:blue;
+}
+
+.headerSwoopContainer
+{
+    display:none;
+    float:left;
+    /* position:absolute; */
+    /* height:100%; */
+    /* width:100%; */
+    width:500px;
+    height:500px;
+}
+
+.headerSwoopLine
+{
+    padding:0px;
+    display:inline-block;
+    height:2px;
+    background-color:black;
+}
+
+#bottomLine
+{
+    width:100px;
+    vertical-align:bottom;
+}
+
+#topLine
+{
+    width:500px;
+    vertical-align:top;
 }
 
 #footer

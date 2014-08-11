@@ -10,8 +10,19 @@
   </head>
   <body>
     <div id="header">
-        <a href="{{ url_for('home') }}">home</a>
+        <span class="headerCircleContainer">
+        <div class="headerCircle" id="bigCircle"></div>
+        <div class="headerCircle" id="redCircle"></div>
+        <div class="headerCircle" id="yellowCircle"></div>
+        <div class="headerCircle" id="greenCircle"></div>
+        </span>
+        <span class="headerSwoopContainer">
+        <div class="headerSwoopLine" id="bottomLine"></div>
+        <div class="headerSwoopLine" id="topLine"></div>
+        </span>
 
+        <span class="headerNavigation">
+        <a href="{{ url_for('home') }}">home</a>
         {% set currentUser = session.username %}
         {% if currentUser%}
         <a href="{{ url_for('user', username=currentUser) }}"> {{ currentUser }}</a>
@@ -19,6 +30,7 @@
         {% else %}
             <a href="{{ url_for('login') }}">login / register</a>
         {% endif %}
+        </span>
     </div>
     <div id="content">
         {% block content %}
