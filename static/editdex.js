@@ -12,10 +12,10 @@ $('ul').click
                 {
                     break;
                 }
-                var parent = $(clickedElement).parent();
-                if(parent != null)
+                var parentElement = clickedElement.parentNode;
+                if(parentElement != null)
                 {
-                    clickedElement = parent;
+                    clickedElement = parentElement;
                 }
                 else
                 {
