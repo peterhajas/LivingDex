@@ -43,20 +43,30 @@ class UserDatabase:
 
     ''' Adding Users '''
 
-    def verifyNewUsername(self, username):
-        validUsernameCharacters = string.ascii_letters + string.digits
+    def _verifyStringisASCII(self, stringToVerify):
+        print "verifying {} is valid".format(stringToVerify)
+        validCharacters = string.ascii_letters + string.digits
+        for character in stringToVerify:
+            print 'checking character |{}|'.format(character)
+            if character not in validCharacters:
+                return False
+        return True
 
-        for character in username:
-            if character not in validUsernameCharacters:
-                return (False, "A username may only contain uppercase, lowercase and digits")
+
+    def verifyNewUsername(self, username):
+
         if self.userExists(username):
             return (False, "That username is already taken")
-        if len(username) == 0:
+        elif len(username) == 0:
             return (False, "Username can't be empty")
+        elif not self._verifyStringisASCII(username):
+            return (False, "A username may only contain uppercase, lowercase and digits")
         else:
             return (True, None)
     
     def verifyNewPassword(self, password):
+        if not self._verifyStringisASCII(password):
+            return (False, "A password may only contain uppercase, lowercase and digits")
         if len(password) == 0:
             return (False, "You need to have a password that's at least one character. But don't make it just one character, that's insecure.")
         else:
