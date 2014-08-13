@@ -29,7 +29,7 @@ a
     margin-left:auto;
     margin-right:auto;
     padding-left:5px;
-    padding:right:5px;
+    padding-right:5px;
     max-width: 600px;
 }
 
@@ -236,6 +236,8 @@ body
 ul
 {
     list-style-type: none;
+    padding:0px;
+    padding-left:6px;
 }
 
 /* Login-specific CSS */
