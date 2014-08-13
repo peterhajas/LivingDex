@@ -49,6 +49,12 @@ class UserDatabase:
             return (False, "Username can't be empty")
         else:
             return (True, None)
+    
+    def verifyNewPassword(self, password):
+        if len(password) == 0:
+            return (False, "You need to have a password that's at least one character. But don't make it just one character, that's insecure.")
+        else:
+            return (True, None)
 
 
     def registerUser(self, username, password, friendCode):

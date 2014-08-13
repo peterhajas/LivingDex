@@ -37,10 +37,13 @@ def register():
     registerUsername = request.form['registerUsername']
     registerPassword = request.form['registerPassword']
 
-    usernameIsValid, error = database.verifyNewUsername(registerUsername)
+    usernameIsValid, usernameError = database.verifyNewUsername(registerUsername)
+    passwordIsValid, passwordError = database.verifyNewPassword(registerPassword)
 
     if not usernameIsValid:
-        return render_template('login.html', error=error)
+        return render_template('login.html', error=usernameError)
+    elif not passwordIsValid:
+        return render_template('login.html', error=passwordError)
     else:
         database.registerUser(registerUsername, registerPassword, 0)
         logInUser(registerUsername)
