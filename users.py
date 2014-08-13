@@ -1,4 +1,5 @@
 import csv
+import string
 
 class User:
     def __init__(self):
@@ -43,6 +44,11 @@ class UserDatabase:
     ''' Adding Users '''
 
     def verifyNewUsername(self, username):
+        validUsernameCharacters = string.ascii_letters + string.digits
+
+        for character in username:
+            if character not in validUsernameCharacters:
+                return (False, "A username may only contain uppercase, lowercase and digits")
         if self.userExists(username):
             return (False, "That username is already taken")
         if len(username) == 0:
