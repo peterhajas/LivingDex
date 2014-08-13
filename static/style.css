@@ -180,6 +180,17 @@ body
 
 /* User-specific CSS */
 
+.friendCode
+{
+    font-family:"Menlo", "Lucida Console", Monaco, monospace;
+}
+
+.friendCode.label
+{
+    display:inline-block;
+    color:#555;
+}
+
 .caught
 {
     background-color: rgba(0, 255, 0, 0.35);
@@ -256,6 +267,13 @@ input.textBox
     font-style: lighter;
     display:block;
     width:100%;
+}
+
+input.textBox#registerFriendCode
+{
+    font-family:"Menlo", "Lucida Console", Monaco, monospace;
+    font-size:19pt;
+    text-align:center;
 }
 
 .securityText

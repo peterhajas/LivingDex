@@ -20,7 +20,7 @@ def home():
 @app.route('/user/<username>')
 def user(username):
     if database.userExists(username):
-        return render_template('user.html', username=username, dex=database.dexForUsername(username, nationalDex.numberOfPokemon), pokemonNames=nationalDex.pokemonNames)
+        return render_template('user.html', username=username, friendCode=database.userForUsername(username).friendCode, dex=database.dexForUsername(username, nationalDex.numberOfPokemon), pokemonNames=nationalDex.pokemonNames)
     else:
         return render_template('baduser.html', username=username)
 
@@ -36,16 +36,20 @@ def togglePokemon():
 def register():
     registerUsername = request.form['registerUsername']
     registerPassword = request.form['registerPassword']
+    registerFriendCode = request.form['registerFriendCode']
 
     usernameIsValid, usernameError = database.verifyNewUsername(registerUsername)
     passwordIsValid, passwordError = database.verifyNewPassword(registerPassword)
+    friendCodeIsValid, friendCodeError = database.verifyNewFriendCode(registerFriendCode)
 
     if not usernameIsValid:
         return render_template('login.html', error=usernameError)
     elif not passwordIsValid:
         return render_template('login.html', error=passwordError)
+    elif not friendCodeIsValid:
+        return render_template('login.html', error=friendCodeError)
     else:
-        database.registerUser(registerUsername, registerPassword, 0)
+        database.registerUser(registerUsername, registerPassword, registerFriendCode)
         logInUser(registerUsername)
         return redirect(url_for('user', username=registerUsername))
 

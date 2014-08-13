@@ -43,14 +43,15 @@ class UserDatabase:
 
     ''' Adding Users '''
 
-    def _verifyStringisASCII(self, stringToVerify):
-        print "verifying {} is valid".format(stringToVerify)
-        validCharacters = string.ascii_letters + string.digits
+    def _verifyStringContainsCharactersFromList(self, stringToVerify, validCharacters):
         for character in stringToVerify:
-            print 'checking character |{}|'.format(character)
             if character not in validCharacters:
                 return False
         return True
+
+    def _verifyStringisASCII(self, stringToVerify):
+        validCharacters = string.ascii_letters + string.digits
+        return self._verifyStringContainsCharactersFromList(stringToVerify, validCharacters)
 
 
     def verifyNewUsername(self, username):
@@ -73,11 +74,22 @@ class UserDatabase:
             return (True, None)
 
 
+    def verifyNewFriendCode(self, friendCode):
+        validCharacters = string.digits + ' ' + '-'
+        if not self._verifyStringContainsCharactersFromList(friendCode, validCharacters):
+            return (False, "A friend code may only contain digits")
+        else:
+            return (True, None)
+
+    def _validatedFriendCode(self, friendCode):
+        friendCode = friendCode.encode('ascii', 'ignore')
+        return friendCode.translate(None, ' -')
+
     def registerUser(self, username, password, friendCode):
         newuser = User()
         newuser.username = username
         newuser.password = password
-        newuser.friendCode = friendCode
+        newuser.friendCode = self._validatedFriendCode(friendCode)
 
         self.users[username] = newuser
         self.writeDatabase()
