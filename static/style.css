@@ -243,6 +243,12 @@ ul
     text-align:center;
 }
 
+.error
+{
+    font-family:"HelveticaNeue", sans-serif;
+    font-size:22pt;
+}
+
 input.textBox
 {
     font-size:24pt;
@@ -250,6 +256,12 @@ input.textBox
     font-style: lighter;
     display:block;
     width:100%;
+}
+
+.securityText
+{
+    font-size:14pt;
+    font-family:"HelveticaNeue", sans-serif;
 }
 
 .securityWarning

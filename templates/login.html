@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
 {% block title %}Login{% endblock %}
 {% block content %}
-{% if error %}
-<h3 class="error">{{ error }}</h3>
-{% endif %}
 <div class="loginContainer">
+    {% if error %}
+        <h3 class="error">{{ error }}</h3>
+    {% endif %}
     <form name="login" action="login" method="post">
         <h3 class="loginLabel">Login:</h3>
         <input class="textBox" type="text" name="loginUsername" placeholder="Username" id="loginUsername">
@@ -18,11 +18,13 @@
         <input class="button" type="submit" value="Register">
     </form>
     <h3 class="loginLabel">An important note on security.</h3>
+    <div class="securityText">
     <p>
     You may have noticed that your password is not obscured with bullets. This is because <em class="securityWarning">your password is stored in plain text</em> on LivingDex
     </p>
     <p>
     To protect the security of your other accounts online, <em class="securityWarning">use a different password for every site</em>, especially LivingDex.
     </p>
+    </div>
 </div>
 {% endblock %}
