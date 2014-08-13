@@ -42,6 +42,15 @@ class UserDatabase:
 
     ''' Adding Users '''
 
+    def verifyNewUsername(self, username):
+        if self.userExists(username):
+            return (False, "That username is already taken")
+        if len(username) == 0:
+            return (False, "Username can't be empty")
+        else:
+            return (True, None)
+
+
     def registerUser(self, username, password, friendCode):
         newuser = User()
         newuser.username = username

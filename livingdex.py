@@ -19,8 +19,6 @@ def home():
 
 @app.route('/user/<username>')
 def user(username):
-    print database.userExists(username)
-    print database.users
     if database.userExists(username):
         return render_template('user.html', username=username, dex=database.dexForUsername(username, nationalDex.numberOfPokemon), pokemonNames=nationalDex.pokemonNames)
     else:
@@ -36,16 +34,12 @@ def togglePokemon():
 
 @app.route('/register', methods=['POST'])
 def register():
-    error = None
     registerUsername = request.form['registerUsername']
     registerPassword = request.form['registerPassword']
 
-    if database.userExists(registerUsername):
-        error = 'User {} already exists'.format(registerUsername)
-    elif len(registerUsername) == 0:
-        error = 'Username empty'
+    usernameIsValid, error = database.verifyNewUsername(registerUsername)
 
-    if error is not None:
+    if not usernameIsValid:
         return render_template('login.html', error=error)
     else:
         database.registerUser(registerUsername, registerPassword, 0)
