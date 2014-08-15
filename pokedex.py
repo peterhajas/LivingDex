@@ -1,16 +1,17 @@
+import json
+
 class NationalDex:
     def __init__(self, pathToNationalDex):
-        self.pokemon = {}
-        self.pokemonNames = [ ]
+        dexfile = open(pathToNationalDex, 'r')
+        self.dexdata = json.load(dexfile)
+        self.numberOfPokemon = len(self.dexdata.keys())
+        self.pokemonNames = []
 
-        with open(pathToNationalDex, 'r') as nationalDexFile:
-            for line in nationalDexFile:
-                pokedexNumber = line.split(' ')[0]
-                pokemonName = line[len(pokedexNumber)+1:-1]
-                self.pokemon[pokedexNumber] = pokemonName
-                self.pokemonNames.append(pokemonName)
+        for i in range (1, self.numberOfPokemon):
+            dexKey = str(i).zfill(3)
+            name = self.dexdata[dexKey]['name']['eng']
+            self.pokemonNames.append(name)
 
-        self.numberOfPokemon = len(self.pokemon.keys())
     def pokemonNameForNumber(self, number):
         return self.pokemon[number]
 

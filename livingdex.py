@@ -11,7 +11,7 @@ from pokedex import *
 app = Flask(__name__)
 
 database = UserDatabase('test.csv')
-nationalDex = NationalDex('nationaldex.txt')
+nationalDex = NationalDex('pokesprite/data/pkmn.json')
 
 @app.route('/')
 def home():
