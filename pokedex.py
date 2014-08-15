@@ -7,7 +7,7 @@ class NationalDex:
         self.numberOfPokemon = len(self.dexdata.keys())
         self.pokemonNames = []
 
-        for i in range (1, self.numberOfPokemon):
+        for i in range (1, self.numberOfPokemon+1):
             dexKey = str(i).zfill(3)
             name = self.dexdata[dexKey]['name']['eng']
             self.pokemonNames.append(name)
