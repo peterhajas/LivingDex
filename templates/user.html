@@ -1,4 +1,13 @@
 {% extends "layout.html" %}
+{% block head %}
+{{ super ()}}
+<link rel="stylesheet" href="{{ url_for('static', filename='pokesprite.css') }}">
+<script src="{{ url_for('static', filename='pokesprite.js') }}"></script>
+<script>
+    PkSpr.process_dom();
+</script>
+{% endblock %}
+
 {% block title %}{{ username }}'s Living Dex{% endblock %}
 {% block content %}
 
@@ -25,6 +34,7 @@ class='pokemonCell caught'
 {% endif %}
 >
 <div class='pokemonCellNumber'>{{ ("%03d")|format(loop.index) }}</div>
+<span class='pkspr pkmn-{{ pokemonSlugs[loop.index - 1] }}'></span>
 <div class='pokemonCellName'>{{ pokemonNames[loop.index - 1] }}</div>
 </li>
 

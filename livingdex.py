@@ -20,7 +20,7 @@ def home():
 @app.route('/user/<username>')
 def user(username):
     if database.userExists(username):
-        return render_template('user.html', username=username, friendCode=database.userForUsername(username).friendCode, dex=database.dexForUsername(username, nationalDex.numberOfPokemon), pokemonNames=nationalDex.pokemonNames)
+        return render_template('user.html', username=username, friendCode=database.userForUsername(username).friendCode, dex=database.dexForUsername(username, nationalDex.numberOfPokemon), pokemonNames=nationalDex.pokemonNames, pokemonSlugs=nationalDex.pokemonSlugs)
     else:
         return render_template('baduser.html', username=username)
 
