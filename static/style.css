@@ -180,6 +180,13 @@ body
 
 /* User-specific CSS */
 
+.usernameHeading
+{
+    font-family:"HelveticaNeue", sans-serif;
+    font-weight:lighter;
+    font-size:20pt;
+}
+
 .friendCode
 {
     font-family:"Menlo", "Lucida Console", Monaco, monospace;

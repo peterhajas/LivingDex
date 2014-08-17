@@ -11,8 +11,14 @@
 {% block title %}{{ username }}'s Living Dex{% endblock %}
 {% block content %}
 
-<h2 class='friendCode'>
+<h2>
+<span class='usernameHeading'>
+{{ username }}
+</span>
+<span>:</span>
+<span class='friendCode'>
 {% for character in friendCode %}{{character}}{% if loop.index % 4 == 0 %}{% if not loop.last %}-{% endif %}{% endif %}{% endfor %}
+</span>
 </h2>
 
 <ul>
