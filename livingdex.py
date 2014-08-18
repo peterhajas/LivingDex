@@ -32,8 +32,10 @@ def togglePokemon():
         database.togglePokemonForUser(username, int(toggledPokemon))
     return 'OK'
 
-@app.route('/register', methods=['POST'])
+@app.route('/register', methods=['POST', 'GET'])
 def register():
+    if request.method == 'GET':
+        return redirect(url_for('login'))
     registerUsername = request.form['registerUsername']
     registerPassword = request.form['registerPassword']
     registerFriendCode = request.form['registerFriendCode']
