@@ -3,9 +3,7 @@
 {{ super ()}}
 <link rel="stylesheet" href="{{ url_for('static', filename='pokesprite.css') }}">
 <script src="{{ url_for('static', filename='pokesprite.js') }}"></script>
-<script>
-    PkSpr.process_dom();
-</script>
+<script src="{{ url_for('static', filename='progressbar.js') }}"></script>
 {% endblock %}
 
 {% block title %}{{ username }}'s Living Dex{% endblock %}
@@ -20,6 +18,11 @@
 {% for character in friendCode %}{{character}}{% if loop.index % 4 == 0 %}{% if not loop.last %}-{% endif %}{% endif %}{% endfor %}
 </span>
 </h2>
+
+<div class='progressBar'>
+    <div class='filledBar'></div>
+    <div class='progressBarText'></div>
+</div>
 
 <ul>
 {% for pokemon in dex %}
@@ -50,5 +53,9 @@ class='pokemonCell caught'
 <script type="text/javascript">var user = "{{ username }}";</script>
 {% if session.username == username%}
 <script src="{{ url_for('static', filename='editdex.js' ) }}"></script>
+<script>
+    PkSpr.process_dom();
+    updateProgressBar();
+</script>
 {% endif %}
 {% endblock %}

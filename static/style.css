@@ -199,6 +199,30 @@ body
     color:#555;
 }
 
+.progressBar
+{
+    background-color: #777;
+    text-align: left;
+    margin: auto;
+    height: 55pt;
+}
+
+.filledBar
+{
+    background-color: green;
+    height: 100%;
+}
+
+.progressBarText
+{
+    text-align: right;
+    font-size: 42pt;
+    font-family: sans-serif;
+    color: white;
+    bottom: 55pt;
+    position: relative;
+}
+
 .caught
 {
     background-color: rgba(0, 255, 0, 0.35);

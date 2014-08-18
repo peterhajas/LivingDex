@@ -31,5 +31,7 @@ $('ul').click
 
         $(clickedElement).toggleClass('uncaught');
         $(clickedElement).toggleClass('caught');
+
+        updateProgressBar();
     }
 );
