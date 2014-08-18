@@ -1,3 +1,5 @@
+import sys, os
+
 from flask import Flask
 from flask import render_template
 from flask import request
@@ -10,8 +12,18 @@ from pokedex import *
 
 app = Flask(__name__)
 
-database = UserDatabase('test.csv')
-nationalDex = NationalDex('pokesprite/data/pkmn.json')
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print 'Please pass a path to the CSV file to use as a database'
+        print 'Usage: ./livingdex.py -d path.csv'
+        quit()
+    else:
+        database = UserDatabase(sys.argv[-1])
+        debugMode = '-d' in sys.argv
+        nationalDex = NationalDex('pokesprite/data/pkmn.json')
+
+        app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+        app.run(host='0.0.0.0', debug = debugMode)
 
 @app.route('/')
 def home():
@@ -79,9 +91,4 @@ def login():
 def logoutAndGoHome():
     logout()
     return home()
-
-if __name__ == '__main__':
-    app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
-    # app.run()
-    app.run(host='0.0.0.0', debug = True)
 
