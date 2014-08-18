@@ -253,7 +253,10 @@ body
     font-family:"Helvetica", sans-serif;
     font-weight:lighter;
     font-size:10pt;
-    word-wrap:break-word;
+    line-height:20px;
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .boxTitle
