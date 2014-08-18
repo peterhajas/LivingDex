@@ -18,7 +18,7 @@ class UserDatabase:
 
     def loadDatabase(self):
         with open(self.pathToDatabase, 'rb') as databaseFile:
-            reader = csv.reader(databaseFile, delimiter=' ', quotechar='|')
+            reader = csv.reader(databaseFile, delimiter=',', quotechar='|')
             for row in reader:
                 userForRow = User()
                 userForRow.username = row[0]
@@ -32,7 +32,7 @@ class UserDatabase:
 
     def writeDatabase(self):
         with open(self.pathToDatabase, 'wb') as databaseFile:
-            writer = csv.writer(databaseFile, delimiter=' ', quotechar='|')
+            writer = csv.writer(databaseFile, delimiter=',', quotechar='|')
             
             for username in self.users.keys():
                 userForRow = self.users[username]
