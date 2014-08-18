@@ -53,9 +53,9 @@ class='pokemonCell caught'
 <script type="text/javascript">var user = "{{ username }}";</script>
 {% if session.username == username%}
 <script src="{{ url_for('static', filename='editdex.js' ) }}"></script>
+{% endif %}
 <script>
     PkSpr.process_dom();
     updateProgressBar();
 </script>
-{% endif %}
 {% endblock %}
