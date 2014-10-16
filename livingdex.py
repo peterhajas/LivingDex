@@ -23,7 +23,7 @@ if __name__ == '__main__':
         nationalDex = NationalDex('pokesprite/data/pkmn.json')
 
         app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
-        app.run(host='0.0.0.0', debug = debugMode)
+        app.run(debug = debugMode)
 
 @app.route('/')
 def home():
