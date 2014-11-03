@@ -3,7 +3,7 @@
  * (C) 2014, Michiel Sikma <dada@doubla.de> and PokéSprite contributors
  * (C) 1995-2014 Nintendo/Creatures Inc./GAME FREAK Inc.
  * For a full list of contributors, view the project commit history.
- * Generated on 2014-08-16 23:55:07.
+ * Generated on 2014-08-12 23:05:55.
  *
 // ==ClosureCompiler==
 // @output_file_name pokesprite.min.js
