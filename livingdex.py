@@ -6,24 +6,42 @@ from flask import request
 from flask import url_for
 from flask import redirect
 
-from users import *
+from flask.ext.sqlalchemy import SQLAlchemy
+
 from usersession import *
 from pokedex import *
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
+    'DATABASE_URL', 'sqlite:////tmp/test.db')
+db = SQLAlchemy(app)
 
-if __name__ == '__main__':
-    if len(sys.argv) < 2:
-        print 'Please pass a path to the CSV file to use as a database'
-        print 'Usage: ./livingdex.py -d path.csv'
-        quit()
-    else:
-        database = UserDatabase(sys.argv[-1])
-        debugMode = '-d' in sys.argv
-        nationalDex = NationalDex('pokesprite/data/pkmn.json')
+number_of_pokemon_str_entries = 1000
 
-        app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
-        app.run(debug = debugMode)
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(20), unique=True)
+    password = db.Column(db.String(20))
+    friendCode = db.Column(db.Integer)
+    pokemon = db.Column(db.String(number_of_pokemon_str_entries))
+    def __init__(self):
+        self.username = ''
+        self.password = ''
+        self.friendCode = ''
+        self.pokemon  = '0' * number_of_pokemon_str_entries
+
+    def __repr__(self):
+        return '<Username %r>' % self.username
+
+from users import *
+
+db.create_all()
+db.session.commit()
+
+database = UserDatabase()
+nationalDex = NationalDex('pokesprite/data/pkmn.json')
+
+app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 @app.route('/')
 def home():
@@ -41,7 +59,7 @@ def togglePokemon():
     username = request.form['username']
     if username == currentUser():
         toggledPokemon = request.form['toggledPokemon']
-        database.togglePokemonForUser(username, int(toggledPokemon))
+        database.togglePokemonForUser(username, int(toggledPokemon), db)
     return 'OK'
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -51,6 +69,7 @@ def register():
     registerUsername = request.form['registerUsername']
     registerPassword = request.form['registerPassword']
     registerFriendCode = request.form['registerFriendCode']
+
 
     usernameIsValid, usernameError = database.verifyNewUsername(registerUsername)
     passwordIsValid, passwordError = database.verifyNewPassword(registerPassword)
@@ -63,7 +82,7 @@ def register():
     elif not friendCodeIsValid:
         return render_template('login.html', error=friendCodeError)
     else:
-        database.registerUser(registerUsername, registerPassword, registerFriendCode)
+        database.registerUser(registerUsername, registerPassword, registerFriendCode, db)
         logInUser(registerUsername)
         return redirect(url_for('user', username=registerUsername))
 
