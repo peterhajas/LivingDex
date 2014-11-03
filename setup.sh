@@ -8,6 +8,10 @@
 git submodule init
 git submodule update
 
+# Activate virtualenv
+
+virtualenv venv
+
 # Generate the PokeSprite spritesheet, CSS and JavaScript
 
 cd pokesprite
