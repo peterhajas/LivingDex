@@ -48,6 +48,16 @@ class UserDatabase:
         friendCode = friendCode.encode('ascii', 'ignore')
         return friendCode.translate(None, ' -')
 
+    def displayFriendlyFriendCodeForFriendCode(self, friendCode):
+        displayFriendlyFriendCode = ''
+        
+        for i in range(len(friendCode)):
+            if i % 4 == 0 and i is not 0:
+                displayFriendlyFriendCode = displayFriendlyFriendCode + '-'
+            displayFriendlyFriendCode = displayFriendlyFriendCode + friendCode[i]
+
+        return displayFriendlyFriendCode
+
     def registerUser(self, username, password, friendCode, db):
         newuser = User()
         newuser.username = username

@@ -22,7 +22,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True)
     password = db.Column(db.String(20))
-    friendCode = db.Column(db.Integer)
+    friendCode = db.Column(db.String(16))
     pokemon = db.Column(db.String(number_of_pokemon_str_entries))
     def __init__(self):
         self.username = ''
@@ -50,7 +50,9 @@ def home():
 @app.route('/user/<username>')
 def user(username):
     if database.userExists(username):
-        return render_template('user.html', username=username, friendCode=database.userForUsername(username).friendCode, dex=database.dexForUsername(username, nationalDex.numberOfPokemon), pokemonNames=nationalDex.pokemonNames, pokemonSlugs=nationalDex.pokemonSlugs)
+        friendCode = database.userForUsername(username).friendCode
+        friendCode = database.displayFriendlyFriendCodeForFriendCode(friendCode)
+        return render_template('user.html', username=username, friendCode=friendCode, dex=database.dexForUsername(username, nationalDex.numberOfPokemon), pokemonNames=nationalDex.pokemonNames, pokemonSlugs=nationalDex.pokemonSlugs)
     else:
         return render_template('baduser.html', username=username)
 
