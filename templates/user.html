@@ -24,6 +24,15 @@
     <div class='progressBarText'></div>
 </div>
 
+{% if session.username == username%}
+<p>
+This is your LivingDex! It keeps track of how many Pokémon you currently have in your PC Box in game. It helps you name and lay out your boxes - each section is the same size as a PC Box.
+</p>
+<p>
+To mark a Pokémon as caught, click it so that it turns green. Catch ´Em All!
+</p>
+{% endif %}
+
 <ul>
 {% for pokemon in dex %}
 
