@@ -10,22 +10,24 @@
   </head>
   <body>
     <div id="header">
-        <span class="headerCircleContainer">
-        <div class="headerCircle" id="bigCircle"></div>
-        <div class="headerCircle" id="redCircle"></div>
-        <div class="headerCircle" id="yellowCircle"></div>
-        <div class="headerCircle" id="greenCircle"></div>
-        </span>
-        <span class="headerSwoopContainer">
-        <div class="headerSwoopLine" id="bottomLine"></div>
-        <div class="headerSwoopCircle" id="leftCircle"></div>
-        <div class="headerSwoopCircle" id="rightCircle"></div>
-        <div class="headerSwoopLine" id="topLine"></div>
-        </span>
-        <span class="headerSwoopContainer">
-            <div class="headerSwoopCircle coverup" id="leftCircle"></div>
-        <div class="headerSwoopCircle coverup" id="rightCircle"></div>
-        </span>
+        <a href="{{ url_for('home') }}">
+            <span class="headerCircleContainer">
+            <div class="headerCircle" id="bigCircle"></div>
+            <div class="headerCircle" id="redCircle"></div>
+            <div class="headerCircle" id="yellowCircle"></div>
+            <div class="headerCircle" id="greenCircle"></div>
+            </span>
+            <span class="headerSwoopContainer">
+            <div class="headerSwoopLine" id="bottomLine"></div>
+            <div class="headerSwoopCircle" id="leftCircle"></div>
+            <div class="headerSwoopCircle" id="rightCircle"></div>
+            <div class="headerSwoopLine" id="topLine"></div>
+            </span>
+            <span class="headerSwoopContainer">
+                <div class="headerSwoopCircle coverup" id="leftCircle"></div>
+            <div class="headerSwoopCircle coverup" id="rightCircle"></div>
+            </span>
+        </a>
 
         <span class="headerNavigation">
         <a href="{{ url_for('home') }}">home</a>
