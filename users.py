@@ -76,18 +76,18 @@ class UserDatabase:
     def userExists(self, username):
         return self.userForUsername(username) is not None
 
-    def pokemonCaughtForUsername(self, username):
-        unicodePokemon = self.userForUsername(username).pokemon
+    def pokemonCaughtForUser(self, user):
+        unicodePokemon = user.pokemon
         return unicodePokemon
 
-    def dexForUsername(self, username, pokemonCount):
-        dex = self.pokemonCaughtForUsername(username)
+    def dexForUser(self, user, pokemonCount):
+        dex = self.pokemonCaughtForUser(user)
         dex = dex[:pokemonCount]
         return dex
 
-    def togglePokemonForUser(self, username, pokemon, db):
+    def togglePokemonForUser(self, user, pokemon, db):
         pokemon = pokemon - 1
-        dex = self.pokemonCaughtForUsername(username)
+        dex = self.pokemonCaughtForUser(user)
         dex = list(dex)
 
         caughtStatus = dex[pokemon]
@@ -100,7 +100,7 @@ class UserDatabase:
 
         dex[pokemon] = newStatus
         dex = "".join(dex)
-        self.userForUsername(username).pokemon = dex
+        user.pokemon = dex
 
         db.session.commit()
 

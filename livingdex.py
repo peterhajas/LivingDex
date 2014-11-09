@@ -50,9 +50,14 @@ def home():
 @app.route('/user/<username>')
 def user(username):
     if database.userExists(username):
-        friendCode = database.userForUsername(username).friendCode
+        user = database.userForUsername(username)
+        friendCode = user.friendCode
         friendCode = database.displayFriendlyFriendCodeForFriendCode(friendCode)
-        return render_template('user.html', username=username, friendCode=friendCode, dex=database.dexForUsername(username, nationalDex.numberOfPokemon), pokemonNames=nationalDex.pokemonNames, pokemonSlugs=nationalDex.pokemonSlugs)
+        dex = database.dexForUser(user, nationalDex.numberOfPokemon)
+        pokemonNames = nationalDex.pokemonNames
+        pokemonSlugs = nationalDex.pokemonSlugs
+
+        return render_template('user.html', username=username, friendCode=friendCode, dex=dex, pokemonNames=pokemonNames, pokemonSlugs=pokemonSlugs)
     else:
         return render_template('baduser.html', username=username)
 
@@ -61,7 +66,8 @@ def togglePokemon():
     username = request.form['username']
     if username == currentUser():
         toggledPokemon = request.form['toggledPokemon']
-        database.togglePokemonForUser(username, int(toggledPokemon), db)
+        user = database.userForUsername(username)
+        database.togglePokemonForUser(user, int(toggledPokemon), db)
     return 'OK'
 
 @app.route('/register', methods=['POST', 'GET'])
