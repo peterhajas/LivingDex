@@ -72,7 +72,6 @@ def register():
     registerPassword = request.form['registerPassword']
     registerFriendCode = request.form['registerFriendCode']
 
-
     usernameIsValid, usernameError = database.verifyNewUsername(registerUsername)
     passwordIsValid, passwordError = database.verifyNewPassword(registerPassword)
     friendCodeIsValid, friendCodeError = database.verifyNewFriendCode(registerFriendCode)

@@ -81,7 +81,6 @@ class UserDatabase:
         return unicodePokemon
 
     def dexForUsername(self, username, pokemonCount):
-        # return pokemonCount * '0'
         dex = self.pokemonCaughtForUsername(username)
         dex = dex[:pokemonCount]
         return dex
