@@ -78,7 +78,7 @@ def compareUsers(username1, username2):
 
         return render_template('compare.html', username1=username1, username2=username2, comparedDex=comparedDex, pokemonNames=pokemonNames, pokemonSlugs=pokemonSlugs)
     else:
-        return render_template('baduser.html', username=username1) # TODO: plh: write a special error page for this
+        return render_template('badusersforcompare.html', username1=username1, username2=username2)
 
 @app.route('/togglePokemon', methods=['POST'])
 def togglePokemon():

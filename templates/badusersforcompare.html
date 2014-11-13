@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block title %}LivingDex | Invalid users to compare{% endblock %}
+{% block content %}
+Sorry! LivingDex doesn't know of either {{ username1 }} or {{ username2 }} or both. It's a mystery!
+
+{% set betterUser= [username1, username2]|random %}
+Therefore, they can't be compared. To be honest, I prefer {{ betterUser }}.
+{% endblock %}
