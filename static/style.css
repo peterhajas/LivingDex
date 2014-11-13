@@ -239,6 +239,12 @@ body
     position: relative;
 }
 
+.csvDownloadLinkContainer
+{
+    text-align: center;
+    font-size: 12pt;
+}
+
 .caught
 {
     background-color: rgba(0, 255, 0, 0.35);

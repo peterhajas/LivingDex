@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='pokesprite.css') }}">
 <script src="{{ url_for('static', filename='pokesprite.js') }}"></script>
 <script src="{{ url_for('static', filename='progressbar.js') }}"></script>
+<script src="{{ url_for('static', filename='userdata_as_csv.js') }}"></script>
 {% endblock %}
 
 {% block title %}{{ username }}'s Living Dex{% endblock %}
@@ -39,6 +40,10 @@ To mark a Pokémon as caught, click it so that it turns green. Catch ´Em All!
 </div>
 {% endif %}
 
+<div class='csvDownloadLinkContainer'>
+
+</div>
+
 <ul>
 {% for pokemon in dex %}
 
@@ -72,5 +77,6 @@ class='pokemonCell caught'
 <script>
     PkSpr.process_dom();
     updateProgressBar();
+    prepareCSVLink();
 </script>
 {% endblock %}

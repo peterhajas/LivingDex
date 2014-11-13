@@ -3,6 +3,7 @@
 
 # Nice-to-have before launch
 - Download-as-CSV
+    - partially done
 - Editable friend codes
 
 # Enhancements after launch
