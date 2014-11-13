@@ -23,6 +23,8 @@ class UserDatabase:
             return (False, "That username is already taken")
         elif len(username) == 0:
             return (False, "Username can't be empty")
+        elif len(username) > 20:
+            return (False, "Username is too long. Must be 20 characters or less")
         elif not self._verifyStringisASCII(username):
             return (False, "A username may only contain uppercase, lowercase and digits")
         else:
@@ -33,9 +35,10 @@ class UserDatabase:
             return (False, "A password may only contain uppercase, lowercase and digits")
         if len(password) == 0:
             return (False, "You need to have a password that's at least one character. But don't make it just one character, that's insecure.")
+        elif len(password) > 20:
+            return (False, "Password is too long. Must be 20 characters or less")
         else:
             return (True, None)
-
 
     def verifyNewFriendCode(self, friendCode):
         validCharacters = string.digits + ' ' + '-'
