@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block head %}
+{{ super ()}}
+<link rel="stylesheet" href="{{ url_for('static', filename='pokesprite.css') }}">
+<script src="{{ url_for('static', filename='pokesprite.js') }}"></script>
+{% endblock %}
+
+{% block title %}LivingDex: Comparing {{ username1 }} and {{ username2 }}{% endblock %}
+{% block content %}
+
+<h2>
+<span class='usernameHeading'>
+    Comparing the dex of <a href="{{ url_for('user', username=username1) }}"> {{ username1 }}</a> and <a href="{{ url_for('user', username=username2) }}"> {{ username2 }}</a>
+</span>
+</h2>
+
+{% if session.username == username1 or session.username == username2 %}
+<div class="colorKey">
+<span class='uncaught'>Caught by neither</span> - <span class='caught'>Caught by {{ username1 }}</span> - <span class='caughtByOther'>Caught by {{ username2 }}</span> - <span class='caughtByBoth'>Caught by both</span>
+</div>
+{% endif %}
+
+<ul>
+{% for pokemon in comparedDex %}
+
+{% if loop.index0 % 30 == 0 %}
+<div class='boxTitle'>
+{% set boxStartIndex = loop.index %}
+{% set boxEndIndex = loop.index0 + 30 %}
+{{("%03d")|format(boxStartIndex)}} - {{("%03d")|format(boxEndIndex)}}
+</div>
+{% endif %}
+<li
+id={{ loop.index }}
+{% if pokemon == "0" %}
+class='pokemonCell uncaught'
+{% elif pokemon == "1" %}
+class='pokemonCell caught'
+{% elif pokemon == "2" %}
+class='pokemonCell caughtByOther'
+{% elif pokemon == "3" %}
+class='pokemonCell caughtByBoth'
+{% endif %}
+>
+<div class='pokemonCellNumber'>{{ ("%03d")|format(loop.index) }}</div>
+<span class='pkspr pkmn-{{ pokemonSlugs[loop.index - 1] }}'></span>
+<div class='pokemonCellName'>{{ pokemonNames[loop.index - 1] }}</div>
+</li>
+
+{% endfor %}
+</ul>
+
+<script>
+    PkSpr.process_dom();
+</script>
+{% endblock %}

@@ -1,4 +1,5 @@
 import string
+import sys
 from livingdex import User
 
 class UserDatabase:
@@ -87,6 +88,40 @@ class UserDatabase:
         dex = self.pokemonCaughtForUser(user)
         dex = dex[:pokemonCount]
         return dex
+    
+    def comparedDexBetweenUsers(self, user1, user2, pokemonCount):
+        dex1 = self.dexForUser(user1, pokemonCount)
+        dex2 = self.dexForUser(user2, pokemonCount)
+
+        # 0 means neither of the users have it, 1 means user1 has it, 2 means
+        # user2 has it, and 3 means both users have it
+
+        comparedDex = []
+
+        for i in range(len(dex1)):
+            newStatus = -1
+
+            isCaughtByUser1 = dex1[i] == u'1'
+            isCaughtByUser2 = dex2[i] == u'1'
+
+            if not isCaughtByUser1 and not isCaughtByUser2:
+                newStatus = 0
+            elif isCaughtByUser1 and not isCaughtByUser2:
+                newStatus = 1
+            elif isCaughtByUser2 and not isCaughtByUser1:
+                newStatus = 2
+            elif isCaughtByUser1 and isCaughtByUser2:
+                newStatus = 3
+            else:
+                print isCaughtByUser1
+                print isCaughtByUser2
+
+            newStatus = unicode(newStatus)
+            comparedDex.append(newStatus)
+
+        comparedDex = "".join(comparedDex)
+
+        return comparedDex
 
     def togglePokemonForUser(self, user, pokemon, db):
         pokemon = pokemon - 1

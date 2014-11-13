@@ -31,6 +31,12 @@ This is your LivingDex! It keeps track of how many Pokémon you currently have i
 <p>
 To mark a Pokémon as caught, click it so that it turns green. Catch ´Em All!
 </p>
+{% elif session.username %}
+<div class="compareDexHeader">
+<p>
+<a href="{{ url_for('compareUsers', username1=session.username, username2=username) }}">Compare your LivingDex</a> with {{ username }}
+</p>
+</div>
 {% endif %}
 
 <ul>

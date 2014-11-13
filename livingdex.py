@@ -14,6 +14,10 @@ from pokedex import *
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
     'DATABASE_URL', 'sqlite:////tmp/test.db')
+
+if app.config['SQLALCHEMY_DATABASE_URI'] == 'sqlite:////tmp/test.db':
+    app.config['DEBUG'] = True
+
 db = SQLAlchemy(app)
 
 number_of_pokemon_str_entries = 1000
@@ -60,6 +64,21 @@ def user(username):
         return render_template('user.html', username=username, friendCode=friendCode, dex=dex, pokemonNames=pokemonNames, pokemonSlugs=pokemonSlugs)
     else:
         return render_template('baduser.html', username=username)
+
+@app.route('/compare/<username1>/<username2>')
+def compareUsers(username1, username2):
+    if database.userExists(username1) and database.userExists(username2):
+        user1 = database.userForUsername(username1)
+        user2 = database.userForUsername(username2)
+
+        comparedDex = database.comparedDexBetweenUsers(user1, user2, nationalDex.numberOfPokemon)
+
+        pokemonNames = nationalDex.pokemonNames
+        pokemonSlugs = nationalDex.pokemonSlugs
+
+        return render_template('compare.html', username1=username1, username2=username2, comparedDex=comparedDex, pokemonNames=pokemonNames, pokemonSlugs=pokemonSlugs)
+    else:
+        return render_template('baduser.html', username=username1) # TODO: plh: write a special error page for this
 
 @app.route('/togglePokemon', methods=['POST'])
 def togglePokemon():

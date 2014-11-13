@@ -23,6 +23,11 @@ a
     color: red;
 }
 
+.colorKey
+{
+    text-align: center;
+}
+
 #header a
 {
     font-family: "HelveticaNeue", sans-serif;
@@ -244,6 +249,16 @@ body
     opacity: 0.65;
 }
 
+.caughtByOther
+{
+    background-color: rgba(255, 0, 0, 0.35);
+}
+
+.caughtByBoth
+{
+    background-color: rgba(0, 255, 0, 0.7);
+}
+
 .pokemonCell
 {
     display:inline-block;
@@ -284,6 +299,13 @@ ul
     list-style-type: none;
     padding:0px;
     padding-left:6px;
+}
+
+/* Compare-specific CSS */
+
+.compareDexHeader
+{
+    text-align: center;
 }
 
 /* Login-specific CSS */
