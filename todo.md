@@ -8,3 +8,6 @@
 
 # Enhancements after launch
 - ORAS additions
+- Sub-dex support:
+    - Generations
+    - Game-specific national dexes
