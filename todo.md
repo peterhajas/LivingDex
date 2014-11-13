@@ -1,5 +1,4 @@
 # Outstanding issues before launch
-- Get a domain
 - Change API secret key to be actually secret
 
 # Nice-to-have before launch
