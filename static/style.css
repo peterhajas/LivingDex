@@ -350,6 +350,11 @@ input.textBox#registerUsername
     text-transform:lowercase;
 }
 
+input.textBox#loginUsername
+{
+    text-transform:lowercase;
+}
+
 input.textBox#registerFriendCode
 {
     font-family:"Menlo", "Lucida Console", Monaco, monospace;
