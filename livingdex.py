@@ -94,6 +94,7 @@ def register():
     if request.method == 'GET':
         return redirect(url_for('login'))
     registerUsername = request.form['registerUsername']
+    registerUsername = registerUsername.lower()
     registerPassword = request.form['registerPassword']
     registerFriendCode = request.form['registerFriendCode']
 
