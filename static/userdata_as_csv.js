@@ -23,7 +23,7 @@ function prepareCSVLink()
 
     var downloadLink = document.createElement("a");
     var csvURI = 'data:text/csv;charset=utf-8,' + csvString;
-    downloadLink.href = csvString;
+    downloadLink.href = csvURI;
     downloadLink.download = 'dex.csv';
     downloadLink.innerHTML = "Download as CSV (experimental)";
     
