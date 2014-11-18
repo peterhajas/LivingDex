@@ -10,34 +10,33 @@
   </head>
   <body>
     <div id="header">
-        <a href="{{ url_for('home') }}">
-            <span class="headerCircleContainer">
-            <div class="headerCircle" id="bigCircle"></div>
-            <div class="headerCircle" id="redCircle"></div>
-            <div class="headerCircle" id="yellowCircle"></div>
-            <div class="headerCircle" id="greenCircle"></div>
-            </span>
-            <span class="headerSwoopContainer">
-            <div class="headerSwoopLine" id="bottomLine"></div>
-            <div class="headerSwoopCircle" id="leftCircle"></div>
-            <div class="headerSwoopCircle" id="rightCircle"></div>
-            <div class="headerSwoopLine" id="topLine"></div>
-            </span>
-            <span class="headerSwoopContainer">
-                <div class="headerSwoopCircle coverup" id="leftCircle"></div>
-            <div class="headerSwoopCircle coverup" id="rightCircle"></div>
-            </span>
-        </a>
+        <span class="headerCircleContainer">
+        <div class="headerCircle" id="bigCircle"></div>
+        <div class="headerCircle" id="redCircle"></div>
+        <div class="headerCircle" id="yellowCircle"></div>
+        <div class="headerCircle" id="greenCircle"></div>
+        </span>
+        <span class="headerSwoopContainer">
+        <div class="headerSwoopCircle" id="leftCircle"></div>
+        <div class="headerSwoopCircle" id="rightCircle"></div>
+        </span>
+        <span class="headerSwoopContainer">
+            <div class="headerSwoopCircle coverup" id="leftCircle"></div>
+        <div class="headerSwoopCircle coverup" id="rightCircle"></div>
+        </span>
+
+        <div class="headerSwoopLine" id="bottomLine"></div>
+        <div class="headerSwoopLine" id="topLine"></div>
 
         <span class="headerNavigation">
-        <a href="{{ url_for('home') }}">home</a>
-        {% set currentUser = session.username %}
-        {% if currentUser%}
-        <a href="{{ url_for('user', username=currentUser) }}"> {{ currentUser }}</a>
-        <a href="{{ url_for('logoutAndGoHome') }}">logout</a>
-        {% else %}
-            <a href="{{ url_for('login') }}">login / register</a>
-        {% endif %}
+            <a class="headerLink" href="{{ url_for('home') }}">home</a>
+            {% set currentUser = session.username %}
+            {% if currentUser%}
+                <a class="headerLink" href="{{ url_for('user', username=currentUser) }}"> {{ currentUser }}</a>
+                <a class="headerLink" href="{{ url_for('logoutAndGoHome') }}">logout</a>
+            {% else %}
+                <a class="headerLink" href="{{ url_for('login') }}">login / register</a>
+            {% endif %}
         </span>
     </div>
     <div id="content">
