@@ -42,9 +42,12 @@ class UserDatabase:
             return (True, None)
 
     def verifyNewFriendCode(self, friendCode):
-        validCharacters = string.digits + ' ' + '-'
+        friendCode = self._validatedFriendCode(friendCode)
+        validCharacters = string.digits
         if not self._verifyStringContainsCharactersFromList(friendCode, validCharacters):
             return (False, "A friend code may only contain digits")
+        elif len(friendCode) > 16:
+            return (False, "A friend code is 16 numbers")
         else:
             return (True, None)
 
@@ -141,6 +144,13 @@ class UserDatabase:
         user.pokemon = dex
 
         db.session.commit()
+
+    def changeFriendCodeForUser(self, username, friendCode, db):
+        friendCode = self._validatedFriendCode(friendCode)
+        if self.verifyNewFriendCode(friendCode)[0] is not False:
+            user = self.userForUsername(username)
+            user.friendCode = friendCode
+            db.session.commit()
 
     def userHasPassword(self, username, password):
         if self.userExists(username):

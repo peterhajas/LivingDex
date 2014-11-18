@@ -10,14 +10,27 @@
 {% block title %}{{ username }}'s Living Dex{% endblock %}
 {% block content %}
 
-<h2>
+{% set isCurrentUser = (session.username == username) %}
+
+<h2 class="userInfoHeader">
 <span class='usernameHeading'>
 {{ username }}
 </span>
 <span>:</span>
+{% if isCurrentUser %}
+{% set friendCodeTextFieldPlaceholder = "friend code" %}
+{% if friendCode %}
+{% set friendCodeTextFieldPlaceholder = friendCode %}
+{% endif %}
+<form class="friendCodeForm" name="friendCode" action="/editFriendCode" method="post">
+    <input class="friendCode" type="text" name="friendCode" placeholder="{{ friendCodeTextFieldPlaceholder }}" id="friendCode">
+    <input class="friendCodeUpdateButton" type="submit" value="update">
+</form>
+{% else %}
 <span class='friendCode'>
 {{ friendCode }}
 </span>
+{% endif %}
 </h2>
 
 <div class='progressBar'>
@@ -25,7 +38,7 @@
     <div class='progressBarText'></div>
 </div>
 
-{% if session.username == username%}
+{% if isCurrentUser %}
 <p>
 This is your LivingDex! It keeps track of how many Pokémon you currently have in your PC Box in game. It helps you name and lay out your boxes - each section is the same size as a PC Box.
 </p>

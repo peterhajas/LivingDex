@@ -198,6 +198,11 @@ body
 
 /* User-specific CSS */
 
+.userInfoHeader
+{
+    height: 40px;
+}
+
 .usernameHeading
 {
     font-family:"HelveticaNeue", sans-serif;
@@ -210,6 +215,8 @@ body
     font-family:"Menlo", "Lucida Console", Monaco, monospace;
     font-weight:lighter;
     font-size:24pt;
+    text-align:center;
+    width:370px;
 }
 
 .friendCode.label
@@ -219,6 +226,20 @@ body
     font-size:36pt;
     display:inline-block;
     color:#555;
+}
+
+.friendCodeForm
+{
+    display:inline-block;
+}
+
+.friendCodeUpdateButton
+{
+    padding: 0px;
+    border: 0px;
+    background-color: rgba(0, 0, 0, 0.0);
+    color: red;
+    font-size: 14pt;
 }
 
 .progressBar
@@ -366,6 +387,7 @@ input.textBox#registerFriendCode
     font-family:"Menlo", "Lucida Console", Monaco, monospace;
     font-size:19pt;
     text-align:center;
+    height:38px;
 }
 
 .securityText

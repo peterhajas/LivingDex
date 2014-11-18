@@ -89,6 +89,13 @@ def togglePokemon():
         database.togglePokemonForUser(user, int(toggledPokemon), db)
     return 'OK'
 
+@app.route('/editFriendCode', methods=['POST'])
+def editFriendCode():
+    currentUsername = currentUser()
+    friendCode = request.form['friendCode']
+    database.changeFriendCodeForUser(currentUsername, friendCode, db)
+    return redirect(url_for('user', username=currentUsername))
+
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'GET':
