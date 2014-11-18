@@ -23,6 +23,11 @@ a
     color: red;
 }
 
+form
+{
+    text-align: center;
+}
+
 .colorKey
 {
     text-align: center;
@@ -60,6 +65,7 @@ body
     position:fixed;
     top:0;
     background-color: red;
+    z-index: 100;
 }
 
 .headerNavigation
@@ -233,7 +239,7 @@ body
     display:inline-block;
 }
 
-.friendCodeUpdateButton
+.submitButton
 {
     padding: 0px;
     border: 0px;

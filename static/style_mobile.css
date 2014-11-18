@@ -1,0 +1,93 @@
+@media (max-width: 520px)
+{
+    #header a
+    {
+        padding: 16px 2px;
+        font-size: 14pt;
+    }
+
+    #content
+    {
+        padding-top:0px;
+    }
+
+    .headerLink
+    {
+        border-left: solid 1px black;
+    }
+
+    .headerCircleContainer
+    {
+        display:none;
+    }
+
+    .headerSwoopContainer
+    {
+        display:none;
+    }
+
+    .headerSwoopLine
+    {
+        height:1px;
+    }
+
+    #topLine
+    {
+        left:0px;
+    }
+
+    .friendCode
+    {
+        font-size:14pt;
+        width:90%;
+        display:block;
+        margin:auto;
+    }
+
+    .friendCodeForm
+    {
+        display:block;
+    }
+
+    .submitButton
+    {
+        display: block;
+        margin:auto;
+    }
+
+    .progressBar
+    {
+        margin-top:50px;
+        height: 30pt;
+    }
+
+    .progressBarText
+    {
+        font-size: 20pt;
+        color: white;
+        bottom: 30pt;
+    }
+
+    .csvDownloadLinkContainer
+    {
+        display: none;
+    }
+
+    .pokemonCellNumber
+    {
+        font-size:12pt;
+    }
+
+    .pokemonCellName
+    {
+        font-size:6pt;
+        line-height:20px;
+    }
+
+    .boxTitle
+    {
+        font-size:18pt;
+        margin-top:6px;
+        margin-bottom:6px;
+    }
+}
