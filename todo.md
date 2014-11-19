@@ -1,12 +1,9 @@
-# Outstanding issues before launch
-- Change API secret key to be actually secret
-
-# Nice-to-have before launch
+# Enhancements
 - Download-as-CSV
     - partially done
-
-# Enhancements after launch
 - ORAS additions
+- Achievements
+    - Could be easily defined (all Kanto starters, all Fire starters, all bug Pokémon, etc.) clientside
 - Sub-dex support:
     - Generations
     - Game-specific national dexes
