@@ -71,12 +71,15 @@ def compareUsers(username1, username2):
         user1 = database.userForUsername(username1)
         user2 = database.userForUsername(username2)
 
+        friendCode1 = database.displayFriendlyFriendCodeForFriendCode(user1.friendCode)
+        friendCode2 = database.displayFriendlyFriendCodeForFriendCode(user2.friendCode)
+
         comparedDex = database.comparedDexBetweenUsers(user1, user2, nationalDex.numberOfPokemon)
 
         pokemonNames = nationalDex.pokemonNames
         pokemonSlugs = nationalDex.pokemonSlugs
 
-        return render_template('compare.html', username1=username1, username2=username2, comparedDex=comparedDex, pokemonNames=pokemonNames, pokemonSlugs=pokemonSlugs)
+        return render_template('compare.html', username1=username1, username2=username2, friendCode1=friendCode1, friendCode2=friendCode2, comparedDex=comparedDex, pokemonNames=pokemonNames, pokemonSlugs=pokemonSlugs)
     else:
         return render_template('badusersforcompare.html', username1=username1, username2=username2)
 

@@ -9,8 +9,28 @@
 {% block content %}
 
 <h2>
-<span class='usernameHeading'>
-    Comparing the dex of <a href="{{ url_for('user', username=username1) }}"> {{ username1 }}</a> and <a href="{{ url_for('user', username=username2) }}"> {{ username2 }}</a>
+    <p>
+        Comparing the LivingDex of
+    </p>
+    <p>
+        <span class='usernameHeading'>
+            <a href="{{ url_for('user', username=username1) }}"> {{ username1 }}</a>
+        </span>
+        <span class='friendCode'>
+            {{ friendCode1 }}
+        </span>
+    </p>
+    <p>
+    and
+    </p>
+    <p>
+        <span class='usernameHeading'>
+            <a href="{{ url_for('user', username=username2) }}"> {{ username2 }}</a>
+        </span>
+        <span class='friendCode'>
+            {{ friendCode2 }}
+        </span>
+    </p>
 </span>
 </h2>
 
