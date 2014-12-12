@@ -248,12 +248,45 @@ body
     font-size: 14pt;
 }
 
+.dexPickerProgressContainer
+{
+    margin: auto;
+}
+
+.dexPicker
+{
+    width:100%;
+    height:20pt;
+    vertical-align:top;
+    text-align: left;
+    margin: auto;
+    background-color: #ddd;
+}
+
+.dexPickerDexTitle
+{
+    font-family:"Menlo", "Lucida Console", Monaco, monospace;
+    font-size:16pt;
+    display: inline-block;
+    width: 14.28%;
+    height: 100%;
+    text-align: center;
+}
+
+.selected
+{
+    background-color: blue;
+    color: white;
+}
+
 .progressBar
 {
     background-color: #777;
     text-align: left;
     margin: auto;
+    width: 100%;
     height: 55pt;
+    display: inline-block;
 }
 
 .filledBar
@@ -286,6 +319,11 @@ body
 .uncaught
 {
     opacity: 0.65;
+}
+
+.invalid
+{
+    opacity: 0.15;
 }
 
 .caughtByOther

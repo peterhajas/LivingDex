@@ -90,4 +90,9 @@
         margin-top:6px;
         margin-bottom:6px;
     }
+
+    .dexPickerDexTitle
+    {
+        font-size:12pt;
+    }
 }

@@ -3,6 +3,8 @@
 {{ super ()}}
 <link rel="stylesheet" href="{{ url_for('static', filename='pokesprite.css') }}">
 <script src="{{ url_for('static', filename='pokesprite.js') }}"></script>
+<script src="{{ url_for('static', filename='dexes.js') }}"></script>
+<script src="{{ url_for('static', filename='dexpicker.js') }}"></script>
 <script src="{{ url_for('static', filename='progressbar.js') }}"></script>
 <script src="{{ url_for('static', filename='userdata_as_csv.js') }}"></script>
 {% endblock %}
@@ -27,14 +29,18 @@
 </form>
 {% else %}
 <span class='friendCode'>
-{{ friendCode }}
+({{ friendCode }}
 </span>
 {% endif %}
 </h2>
 
-<div class='progressBar'>
-    <div class='filledBar'></div>
-    <div class='progressBarText'></div>
+<div class="dexPickerProgressContainer">
+    <div class='progressBar'>
+        <div class='filledBar'></div>
+        <div class='progressBarText'></div>
+    </div>
+    <div class='dexPicker'>
+    </div>
 </div>
 
 {% if isCurrentUser %}
@@ -88,6 +94,8 @@ class='pokemonCell caught'
 {% endif %}
 <script>
     PkSpr.process_dom();
+    populateDexPicker();
+    updateDisplayForDex('All');
     updateProgressBar();
     prepareCSVLink();
 </script>

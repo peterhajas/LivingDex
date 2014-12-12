@@ -24,8 +24,8 @@ function progressBarRGBAString(percentage)
 
 function updateProgressBar()
 {
-    var allPokemon = document.getElementsByClassName('pokemonCell').length;
-    var capturedPokemon = document.getElementsByClassName('caught').length;
+    var allPokemon = document.getElementsByClassName('valid').length;
+    var capturedPokemon = document.getElementsByClassName('caught valid').length;
 
     var progressBarFilledElement = document.getElementsByClassName('filledBar')[0];
     var progressBarText = document.getElementsByClassName('progressBarText')[0];
