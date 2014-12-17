@@ -17,8 +17,6 @@ function prepareCSVLink()
         csvString+=', ';
         csvString+=caughtState;
         csvString+='\n';
-
-        break;
     }
 
     var downloadLink = document.createElement("a");
