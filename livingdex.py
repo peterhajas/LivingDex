@@ -83,13 +83,22 @@ def compareUsers(username1, username2):
     else:
         return render_template('badusersforcompare.html', username1=username1, username2=username2)
 
-@app.route('/togglePokemon', methods=['POST'])
-def togglePokemon():
+@app.route('/catchPokemon', methods=['POST'])
+def catchPokemon():
     username = request.form['username']
     if username == currentUser():
-        toggledPokemon = request.form['toggledPokemon']
+        pokemon = request.form['pokemon']
         user = database.userForUsername(username)
-        database.togglePokemonForUser(user, int(toggledPokemon), db)
+        database.catchPokemonForUser(user, int(pokemon), db)
+    return 'OK'
+
+@app.route('/uncatchPokemon', methods=['POST'])
+def uncatchPokemon():
+    username = request.form['username']
+    if username == currentUser():
+        pokemon = request.form['pokemon']
+        user = database.userForUsername(username)
+        database.uncatchPokemonForUser(user, int(pokemon), db)
     return 'OK'
 
 @app.route('/editFriendCode', methods=['POST'])

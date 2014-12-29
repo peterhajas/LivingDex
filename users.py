@@ -151,18 +151,6 @@ class UserDatabase:
     def uncatchPokemonForUser(self, user, pokemon, db):
         self._setStateForPokemonForUser(user, pokemon, u'0', db)
 
-    def togglePokemonForUser(self, user, pokemon, db):
-        caughtStatus = self._stateOfPokemonForUser(user, pokemon, db)
-        newStatus = caughtStatus
-
-        if caughtStatus == u'0':
-            newStatus = u'1'
-        elif caughtStatus == u'1':
-            newStatus = u'0'
-
-        self._setStateForPokemonForUser(user, pokemon, newStatus, db)
-
-
     def changeFriendCodeForUser(self, username, friendCode, db):
         friendCode = self._validatedFriendCode(friendCode)
         if self.verifyNewFriendCode(friendCode)[0] is not False:

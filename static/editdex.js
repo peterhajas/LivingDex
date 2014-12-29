@@ -26,8 +26,17 @@ $('ul').click
         }
 
 
-        toggledPokemon = clickedElement.id;
-        $.post('/togglePokemon', {username : user, toggledPokemon : toggledPokemon});
+        pokemon = clickedElement.id;
+
+        var requestContents = {username : user, pokemon : pokemon};
+        var requestURL = '/uncatchPokemon'
+
+        if($(clickedElement).hasClass('uncaught'))
+        {
+            requestURL = '/catchPokemon'
+        }
+
+        $.post(requestURL, requestContents);
 
         $(clickedElement).toggleClass('uncaught');
         $(clickedElement).toggleClass('caught');
