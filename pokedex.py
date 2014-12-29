@@ -15,6 +15,3 @@ class NationalDex:
             self.pokemonNames.append(name)
             self.pokemonSlugs.append(slug)
 
-    def pokemonNameForNumber(self, number):
-        return self.pokemon[number]
-
