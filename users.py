@@ -126,12 +126,33 @@ class UserDatabase:
 
         return comparedDex
 
-    def togglePokemonForUser(self, user, pokemon, db):
+    def _setStateForPokemonForUser(self, user, pokemon, state, db):
         pokemon = pokemon - 1
         dex = self.pokemonCaughtForUser(user)
         dex = list(dex)
 
-        caughtStatus = dex[pokemon]
+        dex[pokemon] = state
+
+        dex = "".join(dex)
+        user.pokemon = dex
+
+        db.session.commit()
+
+    def _stateOfPokemonForUser(self, user, pokemon, db):
+        pokemon = pokemon - 1
+        dex = self.pokemonCaughtForUser(user)
+        dex = list(dex)
+
+        return dex[pokemon]
+
+    def catchPokemonForUser(self, user, pokemon, db):
+        self._setStateForPokemonForUser(user, pokemon, u'1', db)
+    
+    def uncatchPokemonForUser(self, user, pokemon, db):
+        self._setStateForPokemonForUser(user, pokemon, u'0', db)
+
+    def togglePokemonForUser(self, user, pokemon, db):
+        caughtStatus = self._stateOfPokemonForUser(user, pokemon, db)
         newStatus = caughtStatus
 
         if caughtStatus == u'0':
@@ -139,11 +160,8 @@ class UserDatabase:
         elif caughtStatus == u'1':
             newStatus = u'0'
 
-        dex[pokemon] = newStatus
-        dex = "".join(dex)
-        user.pokemon = dex
+        self._setStateForPokemonForUser(user, pokemon, newStatus, db)
 
-        db.session.commit()
 
     def changeFriendCodeForUser(self, username, friendCode, db):
         friendCode = self._validatedFriendCode(friendCode)
