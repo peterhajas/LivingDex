@@ -120,7 +120,6 @@ class UserDatabase:
             if stateForUser2 == CapturedState.Uncaught:
                 return ComparisonResult.NeitherCaught
             else:
-                print "Second caught"
                 return ComparisonResult.SecondCaught
         if stateForUser1 == CapturedState.Caught:
             if stateForUser2 == CapturedState.Uncaught:
