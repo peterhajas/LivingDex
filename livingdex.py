@@ -20,22 +20,7 @@ if app.config['SQLALCHEMY_DATABASE_URI'] == 'sqlite:////tmp/test.db':
 
 db = SQLAlchemy(app)
 
-number_of_pokemon_str_entries = 1000
-
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), unique=True)
-    password = db.Column(db.String(20))
-    friendCode = db.Column(db.String(16))
-    pokemon = db.Column(db.String(number_of_pokemon_str_entries))
-    def __init__(self):
-        self.username = ''
-        self.password = ''
-        self.friendCode = ''
-        self.pokemon  = '0' * number_of_pokemon_str_entries
-
-    def __repr__(self):
-        return '<Username %r>' % self.username
+from user import User
 
 from users import *
 

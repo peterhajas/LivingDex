@@ -1,6 +1,6 @@
 import string
 import sys
-from livingdex import User
+from user import User
 
 class UserDatabase:
     def __init__(self):
