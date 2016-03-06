@@ -1,6 +1,6 @@
 import string
 import sys
-from user import User
+import user
 
 class UserDatabase:
     def __init__(self):
@@ -66,7 +66,7 @@ class UserDatabase:
         return displayFriendlyFriendCode
 
     def registerUser(self, username, password, friendCode, db):
-        newuser = User()
+        newuser = user.User()
         newuser.username = username
         newuser.password = password
         newuser.friendCode = self._validatedFriendCode(friendCode)
@@ -77,8 +77,8 @@ class UserDatabase:
     ''' User Access and Query '''
 
     def userForUsername(self, username):
-        user = User.query.filter_by(username=username).first()
-        return user
+        foundUser = user.User.query.filter_by(username=username).first()
+        return foundUser
 
     def userExists(self, username):
         return self.userForUsername(username) is not None

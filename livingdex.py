@@ -20,7 +20,7 @@ if app.config['SQLALCHEMY_DATABASE_URI'] == 'sqlite:////tmp/test.db':
 
 db = SQLAlchemy(app)
 
-from user import User
+import user
 
 from users import *
 
