@@ -8,6 +8,10 @@ LivingDex is a website to help players track their living Pokédex.
 
 If you're looking for the website, you can find it at [www.livingdex.xyz](http://www.livingdex.xyz).
 
+## Getting Started
+
+See the `working_on.md` file in teh root of the repository for instructions on getting started.
+
 ## Libraries Used
 
 LivingDex is written in Python, using the [Flask](http://flask.pocoo.org) web framework.
