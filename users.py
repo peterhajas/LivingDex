@@ -2,6 +2,15 @@ import string
 import sys
 import user
 
+def enum(**enums):
+    return type('Enum', (), enums)
+
+# This enum specifies the captured state of a Pokemon
+# 0 is the user hasn't caught the Pokemon
+# 1 is the user has caught the Pokemon
+
+CapturedState = enum(Uncaught = 0, Caught = 1)
+
 class UserDatabase:
     def __init__(self):
         pass
@@ -142,8 +151,12 @@ class UserDatabase:
         pokemon = pokemon - 1
         dex = self.pokemonCaughtForUser(user)
         dex = list(dex)
+        dexState = dex[pokemon]
 
-        return dex[pokemon]
+        if int(dexState) == 0:
+            return CapturedState.Uncaught
+        else:
+            return CapturedState.Caught
 
     def catchPokemonForUser(self, user, pokemon, db):
         self._setStateForPokemonForUser(user, pokemon, u'1', db)
