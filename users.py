@@ -108,29 +108,36 @@ class UserDatabase:
         dex = self.pokemonCaughtForUser(user)
         dex = dex[:pokemonCount]
         return dex
+
+    def comparisonResultBetweenUsers(self, user1, user2, pokemonIndex):
+        # Why +1? Because these indexes are 0-indexed, but
+        # _stateOfPokemonForUser assumes logical indices
+        logicalPokemonIndex = pokemonIndex+1
+        stateForUser1 = self._stateOfPokemonForUser(user1, logicalPokemonIndex)
+        stateForUser2 = self._stateOfPokemonForUser(user2, logicalPokemonIndex)
+
+        if stateForUser1 == CapturedState.Uncaught:
+            if stateForUser2 == CapturedState.Uncaught:
+                return ComparisonState.NeitherCaught
+            else:
+                print "Second caught"
+                return ComparisonState.SecondCaught
+        if stateForUser1 == CapturedState.Caught:
+            if stateForUser2 == CapturedState.Uncaught:
+                return ComparisonState.FirstCaught
+            else:
+                return ComparisonState.BothCaught
+
+        # We need a better error case, but -1 will do for now
+        return -1
     
     def comparedDexBetweenUsers(self, user1, user2, pokemonCount):
-        dex1 = self.dexForUser(user1, pokemonCount)
-        dex2 = self.dexForUser(user2, pokemonCount)
-
         comparedDex = []
 
-        for i in range(len(dex1)):
-            newStatus = -1
+        for i in range(pokemonCount):
+            comparisonResult = self.comparisonResultBetweenUsers(user1, user2, i)
 
-            isCaughtByUser1 = dex1[i] == u'1'
-            isCaughtByUser2 = dex2[i] == u'1'
-
-            if not isCaughtByUser1 and not isCaughtByUser2:
-                newStatus = ComparisonState.NeitherCaught
-            elif isCaughtByUser1 and not isCaughtByUser2:
-                newStatus = ComparisonState.FirstCaught
-            elif isCaughtByUser2 and not isCaughtByUser1:
-                newStatus = ComparisonState.SecondCaught
-            elif isCaughtByUser1 and isCaughtByUser2:
-                newStatus = ComparisonState.BothCaught
-
-            newStatus = unicode(newStatus)
+            newStatus = unicode(comparisonResult)
             comparedDex.append(newStatus)
 
         comparedDex = "".join(comparedDex)
@@ -149,7 +156,7 @@ class UserDatabase:
 
         db.session.commit()
 
-    def _stateOfPokemonForUser(self, user, pokemon, db):
+    def _stateOfPokemonForUser(self, user, pokemon):
         pokemon = pokemon - 1
         dex = self.pokemonCaughtForUser(user)
         dex = list(dex)
