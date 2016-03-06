@@ -71,37 +71,32 @@ class TestUserOperations(unittest.TestCase):
         self.assertEqual(state, CapturedState.Uncaught)
 
     # Comparison
+    ## Keep in mind that comparisonResultBetweenUsers() accepts a 0-indexed
+    ## Pokedex index
     def test_comparing_user_without_pokemon_and_user_without_pokemon_returns_neither_having_pokemon(self):
         ash = self.ash_user()
         misty = self.misty_user()
-        compared = self.userDB.comparedDexBetweenUsers(ash, misty, 1000)
-        # Sigh... 24 is Pikachu (because index 0 is Pokemon #1, Bulbasaur)
-        state_of_pikachu = int(compared[24])
-        self.assertEqual(state_of_pikachu, 0)
+        state_of_pikachu = self.userDB.comparisonResultBetweenUsers(ash, misty, 24)
+        self.assertEqual(state_of_pikachu, ComparisonResult.NeitherCaught)
     def test_comparing_user_with_pokemon_and_user_without_pokemon_returns_first_having_pokemon(self):
         ash = self.ash_user()
         misty = self.misty_user()
         self.userDB.catchPokemonForUser(ash, 25, self.appDB)
-        compared = self.userDB.comparedDexBetweenUsers(ash, misty, 1000)
-        state_of_pikachu = int(compared[24])
-        self.assertEqual(state_of_pikachu, 1)
+        state_of_pikachu = self.userDB.comparisonResultBetweenUsers(ash, misty, 24)
+        self.assertEqual(state_of_pikachu, ComparisonResult.FirstCaught)
     def test_comparing_user_without_pokemon_and_user_with_pokemon_returns_second_having_pokemon(self):
         ash = self.ash_user()
         misty = self.misty_user()
         self.userDB.catchPokemonForUser(misty, 116, self.appDB)
-        compared = self.userDB.comparedDexBetweenUsers(ash, misty, 1000)
-        # 115 is Horsea (#116)
-        state_of_horsea = int(compared[115])
-        self.assertEqual(state_of_horsea, 2)
+        state_of_horsea = self.userDB.comparisonResultBetweenUsers(ash, misty, 115)
+        self.assertEqual(state_of_horsea, ComparisonResult.SecondCaught)
     def test_comparing_user_with_pokemon_and_user_with_pokemon_returns_both_having_pokemon(self):
         ash = self.ash_user()
         misty = self.misty_user()
         self.userDB.catchPokemonForUser(ash, 128, self.appDB)
         self.userDB.catchPokemonForUser(misty, 128, self.appDB)
-        compared = self.userDB.comparedDexBetweenUsers(ash, misty, 1000)
-        # 127 is Tauros (#128)
-        state_of_tauros = int(compared[127])
-        self.assertEqual(state_of_tauros, 3)
+        state_of_tauros = self.userDB.comparisonResultBetweenUsers(ash, misty, 127)
+        self.assertEqual(state_of_tauros, ComparisonResult.BothCaught)
 
 if __name__ == '__main__':
     unittest.main()
