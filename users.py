@@ -11,6 +11,14 @@ def enum(**enums):
 
 CapturedState = enum(Uncaught = 0, Caught = 1)
 
+# This enum specifies the comparison state (between two users) of a Pokemon
+# 0 means neither user has caught the Pokemon
+# 1 means the first user has caught the Pokemon
+# 2 means the second user has caught the Pokemon
+# 3 means both users have caught the Pokemon
+
+ComparisonState = enum(NeitherCaught = 0, FirstCaught = 1, SecondCaught = 2, BothCaught = 3)
+
 class UserDatabase:
     def __init__(self):
         pass
@@ -105,9 +113,6 @@ class UserDatabase:
         dex1 = self.dexForUser(user1, pokemonCount)
         dex2 = self.dexForUser(user2, pokemonCount)
 
-        # 0 means neither of the users have it, 1 means user1 has it, 2 means
-        # user2 has it, and 3 means both users have it
-
         comparedDex = []
 
         for i in range(len(dex1)):
@@ -117,16 +122,13 @@ class UserDatabase:
             isCaughtByUser2 = dex2[i] == u'1'
 
             if not isCaughtByUser1 and not isCaughtByUser2:
-                newStatus = 0
+                newStatus = ComparisonState.NeitherCaught
             elif isCaughtByUser1 and not isCaughtByUser2:
-                newStatus = 1
+                newStatus = ComparisonState.FirstCaught
             elif isCaughtByUser2 and not isCaughtByUser1:
-                newStatus = 2
+                newStatus = ComparisonState.SecondCaught
             elif isCaughtByUser1 and isCaughtByUser2:
-                newStatus = 3
-            else:
-                print isCaughtByUser1
-                print isCaughtByUser2
+                newStatus = ComparisonState.BothCaught
 
             newStatus = unicode(newStatus)
             comparedDex.append(newStatus)
