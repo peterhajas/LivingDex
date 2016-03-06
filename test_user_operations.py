@@ -2,6 +2,7 @@ import unittest
 import user
 from users import UserDatabase
 from users import CapturedState
+from users import ComparisonResult
 
 class FakeDatabaseSession:
     def __init__(self):
@@ -51,13 +52,13 @@ class TestUserOperations(unittest.TestCase):
         # Catch Pikachu
         self.userDB.catchPokemonForUser(user, 25, self.appDB)
         # Grab the state of the Pokemon @ 25
-        state = self.userDB._stateOfPokemonForUser(user, 25, self.appDB)
+        state = self.userDB._stateOfPokemonForUser(user, 25)
         self.assertEqual(state, CapturedState.Caught)
     def test_new_user_hasnt_caught_pokemon(self):
         user = self.ash_user()
         # Grab the state of the Pokemon @ 25
         # It should be 0
-        state = self.userDB._stateOfPokemonForUser(user, 25, self.appDB)
+        state = self.userDB._stateOfPokemonForUser(user, 25)
         self.assertEqual(state, CapturedState.Uncaught)
     def test_catching_then_releasing_pokemon_works(self):
         user = self.ash_user()
@@ -66,7 +67,7 @@ class TestUserOperations(unittest.TestCase):
         # Release Pikachu :-(
         self.userDB.uncatchPokemonForUser(user, 25, self.appDB)
         # Grab the state of the Pokemon @ 25
-        state = self.userDB._stateOfPokemonForUser(user, 25, self.appDB)
+        state = self.userDB._stateOfPokemonForUser(user, 25)
         self.assertEqual(state, CapturedState.Uncaught)
 
     # Comparison

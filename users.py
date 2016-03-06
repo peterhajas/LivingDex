@@ -17,7 +17,7 @@ CapturedState = enum(Uncaught = 0, Caught = 1)
 # 2 means the second user has caught the Pokemon
 # 3 means both users have caught the Pokemon
 
-ComparisonState = enum(NeitherCaught = 0, FirstCaught = 1, SecondCaught = 2, BothCaught = 3)
+ComparisonResult = enum(NeitherCaught = 0, FirstCaught = 1, SecondCaught = 2, BothCaught = 3)
 
 class UserDatabase:
     def __init__(self):
@@ -118,15 +118,15 @@ class UserDatabase:
 
         if stateForUser1 == CapturedState.Uncaught:
             if stateForUser2 == CapturedState.Uncaught:
-                return ComparisonState.NeitherCaught
+                return ComparisonResult.NeitherCaught
             else:
                 print "Second caught"
-                return ComparisonState.SecondCaught
+                return ComparisonResult.SecondCaught
         if stateForUser1 == CapturedState.Caught:
             if stateForUser2 == CapturedState.Uncaught:
-                return ComparisonState.FirstCaught
+                return ComparisonResult.FirstCaught
             else:
-                return ComparisonState.BothCaught
+                return ComparisonResult.BothCaught
 
         # We need a better error case, but -1 will do for now
         return -1
