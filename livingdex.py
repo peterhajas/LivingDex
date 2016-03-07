@@ -21,6 +21,8 @@ if app.config['SQLALCHEMY_DATABASE_URI'] == 'sqlite:////tmp/test.db':
 db = SQLAlchemy(app)
 
 import user
+import pokemon
+import user_pokemon_map
 
 from users import *
 
