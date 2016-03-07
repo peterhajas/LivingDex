@@ -44,7 +44,7 @@ def user(username):
         user = database.userForUsername(username)
         friendCode = user.friendCode
         friendCode = database.displayFriendlyFriendCodeForFriendCode(friendCode)
-        dex = database.dexForUser(user, nationalDex.numberOfPokemon)
+        dex = database.unicodeRepresentationOfLivingDexForUser(user)
         pokemonNames = nationalDex.pokemonNames
         pokemonSlugs = nationalDex.pokemonSlugs
 

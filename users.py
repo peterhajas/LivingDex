@@ -100,14 +100,9 @@ class UserDatabase:
     def userExists(self, username):
         return self.userForUsername(username) is not None
 
-    def pokemonCaughtForUser(self, user):
-        unicodePokemon = user.pokemon
-        return unicodePokemon
-
-    def dexForUser(self, user, pokemonCount):
-        dex = self.pokemonCaughtForUser(user)
-        dex = dex[:pokemonCount]
-        return dex
+    def unicodeRepresentationOfLivingDexForUser(self, user):
+        # TODO: Actually return a unicode representation
+        return '000'
 
     def comparisonResultBetweenUsers(self, user1, user2, pokemonIndex):
         # Why +1? Because these indexes are 0-indexed, but
