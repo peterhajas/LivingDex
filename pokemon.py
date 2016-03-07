@@ -17,3 +17,9 @@ class Pokemon(Model):
     # Variations
     shinyInteger = Column(Integer)
     variant = Column(String(3))
+
+    def __init__(self, name, number):
+        self.name = name
+        self.number = number
+        self.shinyInteger = 0
+        self.variant = ''
