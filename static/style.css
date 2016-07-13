@@ -64,7 +64,7 @@ body
     height:56px;
     position:fixed;
     top:0;
-    background-color: red;
+    background-color: #ec1d1d;
     z-index: 100;
 }
 
@@ -116,7 +116,7 @@ body
     border-color:#eee;
     width:30px;
     height:30px;
-    background-color:blue;
+    background-color:rgb(64, 89, 219);
 }
 
 .headerSwoopContainer
@@ -156,7 +156,7 @@ body
     border-style:solid;
     border-width:2px;
     border-color:black;
-    background-color:red;
+    background-color:#ec1d1d;
     position:absolute;
 }
 
@@ -253,6 +253,8 @@ body
     margin: auto;
 }
 
+
+
 .dexPicker
 {
     width:100%;
@@ -271,6 +273,7 @@ body
     width: 14.28%;
     height: 100%;
     text-align: center;
+    line-height: 30px;
 }
 
 .selected
@@ -298,8 +301,10 @@ body
 .progressBarText
 {
     text-align: right;
-    font-size: 42pt;
-    font-family: sans-serif;
+    font-size: 29pt;
+    font-family: monospace;
+    margin-top: 14px;
+    margin-right: 14px;
     color: white;
     bottom: 55pt;
     position: relative;
